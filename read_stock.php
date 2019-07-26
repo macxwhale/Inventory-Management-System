@@ -65,7 +65,7 @@ include_once 'nav/side_nav.php';
       <td> {$Selling_Price} </td>
       <td> {$Quantity}</td>
       <td>
-        <a href='stock_detail.php?id={$Stock_Id}' class='w3-button w3-blue left-margin'>
+        <a href='stock_details.php?id={$Stock_Id}' class='w3-button w3-blue left-margin'>
         <span class='glyphicon glyphicon-list'></span> 
         </a>
 

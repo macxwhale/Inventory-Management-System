@@ -1,105 +1,112 @@
 <?php 
-// page given in URL parameter, default page is one. This is for the pagination
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-
 // Set header title
-$header_title = "Stocks";
+$header_title = "Suppliers";
 // Set page title
-$page_title = "Stocks";
- 
-// set number of records per page
-$records_per_page = 5;
- 
-// calculate for the query LIMIT clause
-$from_record_num = ($records_per_page * $page) - $records_per_page;
+$page_title = "Supplier Details";
+// get ID of the product to be edited
+$id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing id.');
 
 // include database and object files
-include_once 'config/database.php'; 
-include_once 'objects/suppliers.php'; 
-
-// instantiate database and objects
+include_once 'config/database.php';
+include_once 'objects/suppliers.php';
+ 
+// get database connection
 $database = new Database();
 $db = $database->getConnection();
  
+// prepare objects
 $supplier = new Supplier($db);
  
-// query products
-$stmt = $supplier->readAll($from_record_num, $records_per_page);
-$num = $stmt->rowCount();
-
-include_once'header.php';
-include_once 'nav/side_nav.php';
-
-      echo "<div class=\"w3-col m3 l3 \">";
-      echo "<a href=\"create_supplier.php\" class=\"w3-btn w3-blue w3-round\">Add Supplier</a>";
-      echo "</div>";
-  echo '</div>'; // End Page title Div
-
-  echo "<br>"; //Spacing
-
-  // Table
-  echo '<table class="w3-table w3-striped w3-bordered w3-border 
-  w3-hoverable w3-white w3-card-4 w3-table-all">'; 
-
-  if ($num>0) {
-  echo 
-    "<tr>
-      <th>Supplier Number</th>
-      <th>Supplier Name</th>
-      <th>Contact Person</th>
-      <th>Phone Number</th>
-      <th>Mobile Number</th>
-      <th>Balance</th>
-      <th>Action</th>
-    </tr>";
-
-  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-    extract($row);
-
-  echo 
-    "<tr>
-      <td> {$Supplier_Number} </td>
-      <td> {$Supplier_Name} </td>
-      <td> {$Contact_Person} </td>
-      <td> {$Phone_Number} </td>
-      <td> {$Mobile_Number}</td>
-      <td> {$Balance} </td>
-      <td>
-        <a href='supplier_details.php?id={$Supplier_Id}' class='w3-button w3-blue left-margin'>
-        <span class='glyphicon glyphicon-list'></span> 
-        </a>
-
-        <a href='update_supplier.php?id={$Supplier_Id}' class='w3-button w3-green left-margin'>
-        <span class='glyphicon glyphicon-edit'></span> 
-        </a>
-
-        <a delete-id='{$Supplier_Id}' class='w3-button w3-red left-margin delete-object'>
-        <span class='glyphicon glyphicon-remove'></span> 
-        </a>
-      </td>
-    </tr>";
-  }
-  
-$page_url = "read_suppliers.php?";
+// set ID property of product to be read
+$supplier->Supplier_Id = $id;
  
-// count all products in the database to calculate total pages
-$total_rows = $supplier->countAll();
+// read the details of product to be read
+$supplier->readOne();
 
-echo "</table><br>"; // End of Table
+include_once 'header.php'; 
+include_once 'nav/side_nav.php'; 
 
-// paging buttons here
-include_once 'paging.php';
+echo '</div>'; // End Page title Div
+echo "<br>"; //Spacing
 
-echo "</div>";
+echo 
+"<table class=\"w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white w3-card-4 w3-table-all\">
 
+  <tr>
+    <th class=\"w3-right-align\">Supplier ID</th>
+    <td>{$supplier->Supplier_Id}</td>
+  </tr>
 
-} else {
-  echo 
-      "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
-      <h3>Alert!</h3>
-      <p>No Suppliers Found!!!</p>
-      </div>";
-}
+  <tr>
+    <th class=\"w3-right-align\">Supplier Number</th>
+    <td>{$supplier->Supplier_Number}</td>
+  </tr>
 
-include_once ('footer.php'); 
+  <tr>
+    <th class=\"w3-right-align\">Supplier Name</th>
+    <td>{$supplier->Supplier_Name}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Adresss </th>
+    <td>{$supplier->Address}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Contact_Person</th>
+    <td>{$supplier->Contact_Person}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Phone Number</th>
+    <td>{$supplier->Phone_Number}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Email</th>
+    <td>{$supplier->Email}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Mobile Number</th>
+    <td>{$supplier->Mobile_Number}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Notes</th>
+    <td>{$supplier->Notes}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Balance</th>
+    <td>{$supplier->Balance}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Date Added</th>
+    <td>{$supplier->Date_Added}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Added By</th>
+    <td>{$supplier->Added_By}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Date Updated</th>
+    <td>{$supplier->Date_Updated}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Updated By</th>
+    <td>{$supplier->Updated_By}</td>
+  </tr>
+
+</table><br>
+<button class=\"w3-button w3-dark-grey\">More Countries  
+<i class=\"fa fa-arrow-right\"></i></button>";
+   
+
 ?>
+
+<?php include ('footer.php'); ?>
