@@ -70,6 +70,18 @@ $(document).on('click', '.delete-object', function(){
                     alert('Unable to delete.');
                 });
             } 
+
+            if(result==true){
+                $.post('delete_stock.php', {
+                    object_id: id
+                }, function(data){
+                    location.reload();
+                }).fail(function() {
+                    alert('Unable to delete.');
+                });
+            } 
+
+
         }
     });
  

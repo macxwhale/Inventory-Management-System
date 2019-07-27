@@ -1,27 +1,27 @@
 <?php 
 // Set header title
-$header_title = "Suppliers";
+$header_title = "Stocks";
 // Set page title
-$page_title = "Supplier Details";
+$page_title = "Stocks Details";
 // get ID of the product to be edited
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing id.');
 
 // include database and object files
 include_once 'config/database.php';
-include_once 'objects/suppliers.php';
+include_once 'objects/stocks.php';
  
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
  
 // prepare objects
-$supplier = new Supplier($db);
+$stock = new Stock($db);
  
 // set ID property of product to be read
-$supplier->Supplier_Id = $id;
+$stock->Stock_Id = $id;
  
 // read the details of product to be read
-$supplier->readOne();
+$stock->readOne();
 
 include_once 'header.php'; 
 include_once 'nav/side_nav.php'; 
@@ -33,73 +33,73 @@ echo
 "<table class=\"w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white w3-card-4 w3-table-all\">
 
   <tr>
-    <th class=\"w3-right-align\">Supplier ID</th>
-    <td>{$supplier->Supplier_Id}</td>
+    <th class=\"w3-right-align\">Stock ID</th>
+    <td>{$stock->Stock_Id}</td>
   </tr>
 
   <tr>
+    <th class=\"w3-right-align\">Category</th>
+    <td>{$stock->Category}</td>
+  </tr>
+
+   <tr>
     <th class=\"w3-right-align\">Supplier Number</th>
-    <td>{$supplier->Supplier_Number}</td>
+    <td>{$stock->Supplier_Number}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Supplier Name</th>
-    <td>{$supplier->Supplier_Name}</td>
+    <th class=\"w3-right-align\">Stock Number</th>
+    <td>{$stock->Stock_Number}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Adresss </th>
-    <td>{$supplier->Address}</td>
+    <th class=\"w3-right-align\">Stock Name</th>
+    <td>{$stock->Stock_Name}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Contact_Person</th>
-    <td>{$supplier->Contact_Person}</td>
+    <th class=\"w3-right-align\">Unit Of Measurement </th>
+    <td>{$stock->Unit_Of_Measurement}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Phone Number</th>
-    <td>{$supplier->Phone_Number}</td>
+    <th class=\"w3-right-align\">Purchasing Price</th>
+    <td>{$stock->Purchasing_Price}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Email</th>
-    <td>{$supplier->Email}</td>
+    <th class=\"w3-right-align\">Selling Price</th>
+    <td>{$stock->Selling_Price}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Mobile Number</th>
-    <td>{$supplier->Mobile_Number}</td>
+    <th class=\"w3-right-align\">Quantity</th>
+    <td>{$stock->Quantity}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Notes</th>
-    <td>{$supplier->Notes}</td>
-  </tr>
-
-  <tr>
-    <th class=\"w3-right-align\">Balance</th>
-    <td>{$supplier->Balance}</td>
+    <th class=\"w3-right-align\"> Notes</th>
+    <td>{$stock->Notes}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Date Added</th>
-    <td>{$supplier->Date_Added}</td>
+    <td>{$stock->Date_Added}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Added By</th>
-    <td>{$supplier->Added_By}</td>
+    <th class=\"w3-right-align\"> Added By</th>
+    <td>{$stock->Added_By}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Date Updated</th>
-    <td>{$supplier->Date_Updated}</td>
+    <td>{$stock->Date_Updated}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Updated By</th>
-    <td>{$supplier->Updated_By}</td>
+    <td>{$stock->Updated_By}</td>
   </tr>
 
 </table><br>
