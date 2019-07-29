@@ -4,20 +4,20 @@ if($_POST){
  
     // include database and object file
     include_once 'config/database.php';
-    include_once 'objects/stocks.php';
+    include_once 'objects/sales.php';
  
     // get database connection
     $database = new Database();
     $db = $database->getConnection();
  
     // prepare product object
-    $stock = new Stock($db);
+    $sale = new Sale($db);
      
     // set product id to be deleted
-    $stock->id = $_POST['object_id'];
+    $sale->id = $_POST['object_id'];
      
     // delete the product
-    if($stock->delete()){
+    if($sale->delete()){
         echo "Object was deleted.";
     }
      

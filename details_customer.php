@@ -1,105 +1,101 @@
 <?php 
 // Set header title
-$header_title = "Suppliers";
+$header_title = "Customers";
 // Set page title
-$page_title = "Supplier Details";
+$page_title = "Customer Details";
 // get ID of the product to be edited
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing id.');
 
 // include database and object files
 include_once 'config/database.php';
-include_once 'objects/suppliers.php';
+include_once 'objects/customers.php';
  
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
  
 // prepare objects
-$supplier = new Supplier($db);
+$customer = new Customer($db);
  
 // set ID property of product to be read
-$supplier->Supplier_Id = $id;
+$customer->Customer_Id = $id;
  
 // read the details of product to be read
-$supplier->readOne();
-
+$customer->readOne();
 include_once 'header.php'; 
 include_once 'nav/side_nav.php'; 
-
-echo '</div>'; // End Page title Div
-echo "<br>"; //Spacing
 
 echo 
 "<table class=\"w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white w3-card-4 w3-table-all\">
 
   <tr>
-    <th class=\"w3-right-align\">Supplier ID</th>
-    <td>{$supplier->Supplier_Id}</td>
+    <th class=\"w3-right-align\">Customer ID</th>
+    <td>{$customer->Customer_Id}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Supplier Number</th>
-    <td>{$supplier->Supplier_Number}</td>
+    <th class=\"w3-right-align\">Customer Number</th>
+    <td>{$customer->Customer_Number}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Supplier Name</th>
-    <td>{$supplier->Supplier_Name}</td>
+    <th class=\"w3-right-align\">Customer Name</th>
+    <td>{$customer->Customer_Name}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Adresss </th>
-    <td>{$supplier->Address}</td>
+    <td>{$customer->Address}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Contact_Person</th>
-    <td>{$supplier->Contact_Person}</td>
+    <td>{$customer->Contact_Person}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Phone Number</th>
-    <td>{$supplier->Phone_Number}</td>
+    <td>{$customer->Phone_Number}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Email</th>
-    <td>{$supplier->Email}</td>
+    <td>{$customer->Email}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Mobile Number</th>
-    <td>{$supplier->Mobile_Number}</td>
+    <td>{$customer->Mobile_Number}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Notes</th>
-    <td>{$supplier->Notes}</td>
+    <td>{$customer->Notes}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Balance</th>
-    <td>{$supplier->Balance}</td>
+    <td>{$customer->Balance}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Date Added</th>
-    <td>{$supplier->Date_Added}</td>
+    <td>{$customer->Date_Added}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Added By</th>
-    <td>{$supplier->Added_By}</td>
+    <td>{$customer->Added_By}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Date Updated</th>
-    <td>{$supplier->Date_Updated}</td>
+    <td>{$customer->Date_Updated}</td>
   </tr>
 
   <tr>
     <th class=\"w3-right-align\">Updated By</th>
-    <td>{$supplier->Updated_By}</td>
+    <td>{$customer->Updated_By}</td>
   </tr>
 
 </table><br>

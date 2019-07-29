@@ -3,8 +3,7 @@
     <h4>Copyright 2018</h4>
     <p>Powered by <a href="#" target="_blank">Maxwell Ambenge</a></p>
   </footer>
-
-  
+  </div> <!-- End of page container -->
 </div> <!-- End page content -->
 <script>
 
@@ -73,6 +72,16 @@ $(document).on('click', '.delete-object', function(){
 
             if(result==true){
                 $.post('delete_stock.php', {
+                    object_id: id
+                }, function(data){
+                    location.reload();
+                }).fail(function() {
+                    alert('Unable to delete.');
+                });
+            } 
+
+            if(result==true){
+                $.post('delete_sale.php', {
                     object_id: id
                 }, function(data){
                     location.reload();

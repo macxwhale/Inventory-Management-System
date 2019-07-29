@@ -6,6 +6,9 @@ $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $header_title = "Stock";
 // Set page title
 $page_title = "Stock";
+
+$page_link = "create_stock.php";
+$page_action = "Add Stock";
  
 // set number of records per page
 $records_per_page = 5;
@@ -29,13 +32,6 @@ $num = $stmt->rowCount();
 
 include_once'header.php';
 include_once 'nav/side_nav.php';
-
-      echo "<div class=\"w3-col m3 l3 \">";
-      echo "<a href=\"create_stock.php\" class=\"w3-btn w3-blue w3-round\">Add Stock</a>";
-      echo "</div>";
-  echo '</div>'; // End Page title Div
-
-  echo "<br>"; //Spacing
 
   // Table
   echo '<table class="w3-table w3-striped w3-bordered w3-border 
@@ -65,7 +61,7 @@ include_once 'nav/side_nav.php';
       <td> {$Selling_Price} </td>
       <td> {$Quantity}</td>
       <td>
-        <a href='stock_details.php?id={$Stock_Id}' class='w3-button w3-blue left-margin'>
+        <a href='details_stock.php?id={$Stock_Id}' class='w3-button w3-blue left-margin'>
         <span class='glyphicon glyphicon-list'></span> 
         </a>
 
@@ -73,7 +69,7 @@ include_once 'nav/side_nav.php';
         <span class='glyphicon glyphicon-edit'></span> 
         </a>
 
-        <a delete-id='{$Stock_Id}' class='w3-button w3-red left-margin delete-object'>
+       <a delete-id='{$Stock_Id}' class='w3-button w3-red left-margin delete-object'>
         <span class='glyphicon glyphicon-remove'></span> 
         </a>
       </td>
@@ -89,9 +85,6 @@ echo "</table><br>"; // End of Table
 
 // paging buttons here
 include_once 'paging.php';
-
-echo "</div>";
-
 
 } else {
   echo 

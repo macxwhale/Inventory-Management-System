@@ -26,8 +26,6 @@ $stock->readOne();
 include_once 'header.php'; 
 include_once 'nav/side_nav.php'; 
 
-echo '</div>'; // End Page title Div
-echo "<br>"; //Spacing
 
 echo 
 "<table class=\"w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white w3-card-4 w3-table-all\">
@@ -80,6 +78,21 @@ echo
   <tr>
     <th class=\"w3-right-align\"> Notes</th>
     <td>{$stock->Notes}</td>
+  </tr>
+
+   <tr>
+    <th class=\"w3-right-align\">Size</th>
+    <td>30kg</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Date Of Manufacturing</th>
+    <td>{$stock->Date_Added}</td>
+  </tr>
+
+  <tr>
+    <th class=\"w3-right-align\">Date Of Expiry</th>
+    <td>{$stock->Date_Added}</td>
   </tr>
 
   <tr>

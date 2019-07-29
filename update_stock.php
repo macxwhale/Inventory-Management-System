@@ -27,8 +27,6 @@ $stock->readOne();
 include_once'header.php';
 include_once 'nav/side_nav.php';
 
-echo '</div>'; // End Page title Div
-echo "<br>"; //Spacing
 
 // if the form was submitted - PHP OOP CRUD Tutorial
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -43,8 +41,6 @@ echo "<br>"; //Spacing
 	$stock->Selling_Price = $_POST['Selling_Price'];
 	$stock->Quantity = $_POST['Quantity'];
 	$stock->Notes = $_POST['Notes'];
-
-  $data = $_POST;
 
  
 	if($stock->update()){
@@ -69,10 +65,6 @@ echo "<br>"; //Spacing
 ?>
  
 
-
-
-
-<div class="container w3-card-4 w3-col m8 l9 "> <br> <!-- Container-->
 <form class="form-horizontal" 
 action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$stock->Stock_Id}");?>" method="POST"> <!-- Form -->
 
@@ -166,7 +158,7 @@ value="<?php echo $stock->Purchasing_Price;?>"required="required">
 
 
 </form> <!-- End of form -->
-</div> <!--End of container -->
+
 
 
 <?php include ('footer.php'); ?>

@@ -6,6 +6,9 @@ $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $header_title = "Customers";
 // Set page title
 $page_title = "Customers";
+
+$page_link = "create_customer.php";
+$page_action = "Add Customer";
  
 // set number of records per page
 $records_per_page = 5;
@@ -27,15 +30,8 @@ $customer = new Customer($db);
 $stmt = $customer->readAll($from_record_num, $records_per_page);
 $num = $stmt->rowCount();
 
-include_once'header.php';
+include_once 'header.php';
 include_once 'nav/side_nav.php';
-
-      echo "<div class=\"w3-col m3 l3 \">";
-      echo "<a href=\"create_customer.php\" class=\"w3-btn w3-blue w3-round\">Add Customer</a>";
-      echo "</div>";
-  echo '</div>'; // End Page title Div
-
-  echo "<br>"; //Spacing
 
   // Table
   echo '<table class="w3-table w3-striped w3-bordered w3-border 
@@ -65,7 +61,7 @@ include_once 'nav/side_nav.php';
       <td> {$Mobile_Number}</td>
       <td> {$Balance} </td>
       <td>
-        <a href='customer_detail.php?id={$Customer_Id}' class='w3-button w3-blue left-margin'>
+        <a href='details_customer.php?id={$Customer_Id}' class='w3-button w3-blue left-margin'>
         <span class='glyphicon glyphicon-list'></span> 
         </a>
 
@@ -89,8 +85,6 @@ echo "</table><br>"; // End of Table
 
 // paging buttons here
 include_once 'paging.php';
-
-echo "</div>";
 
 
 } else {

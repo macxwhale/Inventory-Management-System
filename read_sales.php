@@ -3,12 +3,12 @@
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 // Set header title
-$header_title = "Suppliers";
+$header_title = "Sales";
 // Set page title
-$page_title = "Suppliers";
+$page_title = "Sales";
 
-$page_link = "create_supplier.php";
-$page_action = "Add Supplier";
+$page_link = "create_sales.php";
+$page_action = "Add Sale";
  
 // set number of records per page
 $records_per_page = 5;
@@ -18,19 +18,19 @@ $from_record_num = ($records_per_page * $page) - $records_per_page;
 
 // include database and object files
 include_once 'config/database.php'; 
-include_once 'objects/suppliers.php'; 
+include_once 'objects/sales.php'; 
 
 // instantiate database and objects
 $database = new Database();
 $db = $database->getConnection();
  
-$supplier = new Supplier($db);
+$sale = new Sale($db);
  
 // query products
-$stmt = $supplier->readAll($from_record_num, $records_per_page);
+$stmt = $sale->readAll($from_record_num, $records_per_page);
 $num = $stmt->rowCount();
 
-include_once'header.php';
+include_once 'header.php';
 include_once 'nav/side_nav.php';
 
   // Table
@@ -40,13 +40,14 @@ include_once 'nav/side_nav.php';
   if ($num>0) {
   echo 
     "<tr>
-      <th>Supplier Number</th>
-      <th>Supplier Name</th>
-      <th>Contact Person</th>
-      <th>Phone Number</th>
-      <th>Mobile Number</th>
-      <th>Balance</th>
-      <th>Action</th>
+      <th>Sale Number</th>
+      <th>Sales Date</th>
+      <th>Customer Id</th>
+      <th>Total Amount</th>
+      <th>Final Total Amount</th>
+      <th>Total Payment</th>
+      
+      <th> Action</th>
     </tr>";
 
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -54,32 +55,33 @@ include_once 'nav/side_nav.php';
 
   echo 
     "<tr>
-      <td> {$Supplier_Number} </td>
-      <td> {$Supplier_Name} </td>
-      <td> {$Contact_Person} </td>
-      <td> {$Phone_Number} </td>
-      <td> {$Mobile_Number}</td>
-      <td> {$Balance} </td>
+      <td> {$Sales_Number} </td>
+      <td> {$Sales_Date} </td>
+      <td> {$Customer_ID} </td>
+      <td> {$Total_Amount} </td>
+      <td> {$Final_Total_Amount} </td>
+      <td> {$Total_Payment} </td>
+    
       <td>
-        <a href='details_supplier.php?id={$Supplier_Id}' class='w3-button w3-blue left-margin w3-round'>
+        <a href='details_sale.php?id={$Sales_ID}' class='w3-button w3-blue left-margin'>
         <span class='glyphicon glyphicon-list'></span> 
         </a>
 
-        <a href='update_supplier.php?id={$Supplier_Id}' class='w3-button w3-green left-margin w3-round'>
+        <a href='update_sale.php?id={$Sales_ID}' class='w3-button w3-green left-margin'>
         <span class='glyphicon glyphicon-edit'></span> 
         </a>
 
-        <a delete-id='{$Supplier_Id}' class='w3-button w3-red left-margin delete-object w3-round'>
+        <a delete-id='{$Sales_ID}' class='w3-button w3-red left-margin delete-object'>
         <span class='glyphicon glyphicon-remove'></span> 
         </a>
       </td>
     </tr>";
   }
   
-$page_url = "read_suppliers.php?";
+$page_url = "read_sales.php?";
  
 // count all products in the database to calculate total pages
-$total_rows = $supplier->countAll();
+$total_rows = $sale->countAll();
 
 echo "</table><br>"; // End of Table
 
@@ -91,7 +93,7 @@ include_once 'paging.php';
   echo 
       "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
       <h3>Alert!</h3>
-      <p>No Suppliers Found!!!</p>
+      <p>No Customers Found!!!</p>
       </div>";
 }
 

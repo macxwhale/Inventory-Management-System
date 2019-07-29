@@ -27,7 +27,7 @@
 
 <style> html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}</style>
 
-<!-- Sticky Footer
+<!-- Sticky Footer 
 <style>
 .footer {
    position: fixed;
@@ -36,6 +36,6 @@
    width: 100%;
    text-align: right;
 }
-</style>  -->
+</style>  
 
-<body class="w3-light-grey">
+<body class="w3-light-white">

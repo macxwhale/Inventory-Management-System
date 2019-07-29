@@ -16,10 +16,6 @@ $stock = new Stock($db);
 include_once'header.php';
 include_once 'nav/side_nav.php';
 
-echo '</div>'; // End Page title Div
-echo "<br>"; //Spacing
-
-
 // if the form was submitted - PHP OOP CRUD Tutorial
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
  
@@ -33,8 +29,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
 	$stock->Selling_Price = $_POST['Selling_Price'];
 	$stock->Quantity = $_POST['Quantity'];
 	$stock->Notes = $_POST['Notes'];
-
-  print_r($_POST);
 	
  // create the product
   if($stock->create()){
@@ -58,8 +52,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
 
 ?>
 
-<div class="container w3-card-4 w3-col m8 l9 "> <br> <!-- form container -->
- 
+
   <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" 
     method="POST"> <!-- Form -->
     
@@ -138,9 +131,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
     <button type="submit" class="btn btn-primary" name="submit">Add</button>
     <button type="button" class="btn btn-danger">Cancel</button>
     </div>
-    </div>	
+    </div>  
 
   </form> <!-- End of form -->
-</div> <!-- form container -->
 
 <?php include ('footer.php'); ?>
