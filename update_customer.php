@@ -31,15 +31,18 @@ include_once 'nav/side_nav.php';
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
  
   // set product property values
-	$customer->Customer_Name = $_POST['Customer_Name'];
+	//$customer->Customer_Name = $_POST['Customer_Name'];
 	$customer->Address = $_POST['Address'];
 	$customer->City = $_POST['City'];
 	$customer->Country = $_POST['Country'];
 	$customer->Contact_Person = $_POST['Contact_Person'];
+  $customer->Customer_Type = $_POST['Customer_Type'];
 	$customer->Phone_Number = $_POST['Phone_Number'];
 	$customer->Email = $_POST['Email'];
 	$customer->Mobile_Number = $_POST['Mobile_Number'];
 	$customer->Notes = $_POST['Notes'];
+
+  print_r($_POST);
  
 	if($customer->update()){
       echo 
@@ -76,9 +79,9 @@ value="<?php echo $customer->Customer_Number;?>" disabled>
 <div class="form-group">
 <label class="col-sm-4 control-label">Customer Name</label>
 <div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Customer_Name" 
+<input class="form-control" id="focusedInput" type="text" name="" 
 value="<?php echo $customer->Customer_Name;?>" 
-required="required">
+disabled>
 </div>
 </div>
 
@@ -112,6 +115,22 @@ value="<?php echo $customer->Country;?>" required="required">
 <label class="col-sm-4 control-label">Contact Person</label>
 <div class="col-sm-8">
 <input class="form-control" id="focusedInput" type="text" name="Contact_Person" value="<?php echo $customer->Contact_Person;?>" required="required">
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-4 control-label">Customer Type</label>
+<div class="col-sm-8">
+
+<label class="checkbox-inline">
+    <input type="radio" name="Customer_Type" value="Cash" 
+    <?php if ($customer->Customer_Type == "Cash") echo "checked"; ?>> Cash
+</label>
+
+<label class="checkbox-inline">
+    <input type="radio" name="Customer_Type" value="Credit"
+    <?php if ($customer->Customer_Type == "Credit") echo "checked"; ?>> Credit
+</label>
 </div>
 </div>
 

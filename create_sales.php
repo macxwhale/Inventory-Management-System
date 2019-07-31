@@ -6,12 +6,16 @@ $page_title = "Add Sales";
 // include database and object files
 include_once 'config/database.php';
 include_once 'objects/sales.php';
+include_once 'objects/customers.php';
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
  
 // pass connection to object
 $sale = new Sale($db);
+$customer = new Customer($db);
+$stmt = $customer->readName();
+$num = $stmt->rowCount();
 
 include_once'header.php';
 include_once 'nav/side_nav.php';
@@ -20,6 +24,7 @@ include_once 'nav/side_nav.php';
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
  
   // set product property values
+    $sale->Sales_Number = "SAN" . rand();
 	$sale->Sales_Date= $_POST['Sales_Date'];
 	$sale->Customer_ID = $_POST['Customer_ID'];
     $sale->Notes = $_POST['Notes'];
@@ -74,11 +79,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
     </div>
     </div>
 
+
     <div class="form-group">
-    <label class="col-sm-4 control-label">Customer ID </label>
+    <label class="col-sm-4 control-label">Customer ID</label>
     <div class="col-sm-8">
-    <input class="form-control" id="focusedInput" type="text" name="Customer_ID"
-    required="required">
+    <?php if ($num>0) {?>
+    <select class="form-control" id="sel1" name="Customer_ID">
+    <?php 
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        extract($row); 
+            echo "<option value=\"{$Customer_Number}\">{$Customer_Name}</option>";
+        
+        }
+    }
+    ?>  
+    </select>
     </div>
     </div>
 

@@ -43,8 +43,8 @@ include_once 'nav/side_nav.php';
       <th>Customer Number</th>
       <th>Customer Name</th>
       <th>Contact Person</th>
+      <th>Customer Type</th>
       <th>Phone Number</th>
-      <th>Mobile Number</th>
       <th>Balance</th>
       <th>Action</th>
     </tr>";
@@ -57,19 +57,19 @@ include_once 'nav/side_nav.php';
       <td> {$Customer_Number} </td>
       <td> {$Customer_Name} </td>
       <td> {$Contact_Person} </td>
+      <td> {$Customer_Type}</td>
       <td> {$Phone_Number} </td>
-      <td> {$Mobile_Number}</td>
       <td> {$Balance} </td>
       <td>
-        <a href='details_customer.php?id={$Customer_Id}' class='w3-button w3-blue left-margin'>
+        <a href='view_customer.php?id={$Customer_Id}' class='w3-button w3-blue left-margin w3-round'>
         <span class='glyphicon glyphicon-list'></span> 
         </a>
 
-        <a href='update_customer.php?id={$Customer_Id}' class='w3-button w3-green left-margin'>
+        <a href='update_customer.php?id={$Customer_Id}' class='w3-button w3-green left-margin w3-round'>
         <span class='glyphicon glyphicon-edit'></span> 
         </a>
 
-        <a delete-id='{$Customer_Id}' class='w3-button w3-red left-margin delete-object'>
+        <a delete-id='{$Customer_Id}' class='w3-button w3-red left-margin delete-object w3-round'>
         <span class='glyphicon glyphicon-remove'></span> 
         </a>
       </td>

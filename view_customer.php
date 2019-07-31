@@ -44,12 +44,17 @@ echo
   </tr>
 
   <tr>
+    <th class=\"w3-right-align\">Customer Type</th>
+    <td>{$customer->Customer_Type}</td>
+  </tr>
+
+  <tr>
     <th class=\"w3-right-align\">Adresss </th>
     <td>{$customer->Address}</td>
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Contact_Person</th>
+    <th class=\"w3-right-align\">Contact Person</th>
     <td>{$customer->Contact_Person}</td>
   </tr>
 

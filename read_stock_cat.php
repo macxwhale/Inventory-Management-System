@@ -3,12 +3,12 @@
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 // Set header title
-$header_title = "Stock";
+$header_title = "Stock Categories";
 // Set page title
-$page_title = "Stock";
+$page_title = "Stock Categories";
 
-$page_link = "create_stock.php";
-$page_action = "Add Stock";
+$page_link = "create_stock_cat.php";
+$page_action = "Add Stock Category";
  
 // set number of records per page
 $records_per_page = 5;
@@ -18,16 +18,16 @@ $from_record_num = ($records_per_page * $page) - $records_per_page;
 
 // include database and object files
 include_once 'config/database.php'; 
-include_once 'objects/stocks.php'; 
+include_once 'objects/stock_categories.php'; 
 
 // instantiate database and objects
 $database = new Database();
 $db = $database->getConnection();
  
-$stock = new Stock($db);
+$stock_cat = new Stock_Cat($db);
  
 // query products
-$stmt = $stock->readAll($from_record_num, $records_per_page);
+$stmt = $stock_cat->readAll($from_record_num, $records_per_page);
 $num = $stmt->rowCount();
 
 include_once'header.php';
@@ -40,14 +40,8 @@ include_once 'nav/side_nav.php';
   if ($num>0) {
   echo 
     "<tr>
-      <th> </th>
-      <th>Supplier Number</th>
-      <th>Stock Number</th>
-      <th>Stock Name</th>
-      <th>Stock Brand</th>
-     
-      <th>Selling Price</th>
-      <th>Quantity</th>
+      <th>Category ID</th>
+      <th>Category Name</th>
       <th>Action</th>
     </tr>";
 
@@ -56,39 +50,31 @@ include_once 'nav/side_nav.php';
 
   echo 
     "<tr>
-      <td>
-        <a href=\"#\">Sales <span class=\"w3-badge w3-blue\">6</span></a>
-        <a href=\"#\">Purchases <span class=\"w3-badge w3-green\">6</span></a>
-      </a>
 
       </td>
-      <td> {$Supplier_Number} </td>
-      <td> {$Stock_Number} </td>
-      <td> {$Stock_Name} </td>
-      <td> {Brand_Name} </td>
+      <td> {$Category_ID} </td>
+      <td> {$Category_Name} </td>
      
-      <td> {$Selling_Price} </td>
-      <td> {$Quantity}</td>
       <td>
-        <a href='view_stock.php?id={$Stock_Id}' class='w3-button w3-blue left-margin w3-round'>
+        <a href='view_stock_cat.php?id={$Category_ID}' class='w3-button w3-blue left-margin w3-round'>
         <span class='glyphicon glyphicon-th-list'></span> 
         </a>
 
-        <a href='update_stock.php?id={$Stock_Id}' class='w3-button w3-green left-margin w3-round'>
+        <a href='update_stock_cat.php?id={$Category_ID}' class='w3-button w3-green left-margin w3-round'>
         <span class='glyphicon glyphicon-edit'></span> 
         </a>
 
-       <a delete-id='{$Stock_Id}' class='w3-button w3-red left-margin delete-object w3-round'>
+       <a delete-id='{$Category_ID}' class='w3-button w3-red left-margin delete-object w3-round'>
         <span class='glyphicon glyphicon-trash'></span> 
         </a>
       </td>
     </tr>";
   }
   
-$page_url = "read_stock.php?";
+$page_url = "read_stock_cat.php?";
  
 // count all products in the database to calculate total pages
-$total_rows = $stock->countAll();
+$total_rows = $stock_cat->countAll();
 
 echo "</table><br>"; // End of Table
 

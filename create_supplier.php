@@ -20,7 +20,7 @@ include_once 'nav/side_nav.php';
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
  
   // set product property values
-	$supplier->Supplier_Number = "SN" . rand();
+	$supplier->Supplier_Number = "SUN" . rand();
 	$supplier->Supplier_Name = $_POST['Supplier_Name'];
 	$supplier->Address = $_POST['Address'];
 	$supplier->City = $_POST['City'];

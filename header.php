@@ -25,6 +25,20 @@
 <script src="bootbox/bootbox.locales.min.js"></script>
 
 
+<!-- active class -->
+<script >
+	$(function () {
+    $('a').each(function () {            
+        if (window.location.pathname.indexOf($(this).attr('href')) > -1) {
+            $(this).closest('a').addClass('w3-blue');
+            return false;
+        }
+    });
+});
+
+</script>
+
+
 <style> html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}</style>
 
 <!-- Sticky Footer 

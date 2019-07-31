@@ -1,24 +1,20 @@
 <?php
-class Supplier{
+class Purchase{
  
     // database connection and table name
     private $conn;
-    private $table_name = "suppliers";
+    private $table_name = "purchases";
  
     // object properties
 
-    public $Supplier_Id;
-    public $Supplier_Number;
-    public $Supplier_Name;
-    public $Address;
-    public $City;
-    public $Country;
-    public $Contact_Person;
-    public $Phone_Number;
-    public $Email;
-    public $Mobile_Number;
+    public $Purchase_ID;
+    public $Purchase_Number;
+    public $Purchase_Date;
+    public $Supplier_ID;
     public $Notes;
-    public $Balance;
+    public $Total_Amount;
+    public $Total_Payment;
+    public $Total_Balance;
     public $Date_Added;
     public $Added_By;
     public $Date_Updated;
@@ -33,11 +29,11 @@ class Supplier{
     function readAll($from_record_num, $records_per_page){
  
     $query = "SELECT
-                Supplier_Id, Supplier_Number, Supplier_Name, Contact_Person, Phone_Number, Mobile_Number, Balance
+                Purchase_ID, Purchase_Number, Purchase_Date, Supplier_ID, Notes, Total_Amount, Total_Payment, Total_Balance, Date_Added, Added_By, Date_Updated, Updated_By
             FROM
                 " . $this->table_name . "
             ORDER BY
-                Supplier_Name ASC
+                Purchase_ID ASC
             LIMIT
                 {$from_record_num}, {$records_per_page}";
  
@@ -51,7 +47,7 @@ class Supplier{
     // used for paging products
     public function countAll(){
      
-        $query = "SELECT Supplier_Id FROM " . $this->table_name . "";
+        $query = "SELECT Purchase_ID FROM " . $this->table_name . "";
      
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -64,18 +60,14 @@ class Supplier{
     function readOne(){
  
         $query = "SELECT
-                        Supplier_Id,
-                        Supplier_Number,
-                        Supplier_Name,
-                        Address,
-                        City,
-                        Country,
-                        Contact_Person,
-                        Phone_Number,
-                        Email,
-                        Mobile_Number,
+                        Purchase_ID,
+                        Purchase_Number,
+                        Purchase_Date,
+                        Supplier_ID,
                         Notes,
-                        Balance,
+                        Total_Amount,
+                        Total_Payment,
+                        Total_Balance,
                         Date_Added,
                         Added_By,
                         Date_Updated,
@@ -83,34 +75,30 @@ class Supplier{
                  FROM
                     " . $this->table_name . "
                 WHERE
-                    Supplier_Id = ?
+                    Purchase_ID = ?
                 LIMIT
                     0,1";
      
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $this->Supplier_Id);
+        $stmt->bindParam(1, $this->Purchase_ID);
         $stmt->execute();
      
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
      
-        $this->Supplier_Id = $row['Supplier_Id'];
-        $this->Supplier_Number = $row['Supplier_Number'];
-        $this->Supplier_Name = $row['Supplier_Name'];
-        $this->Address = $row['Address'];
-        $this->City = $row['City'];
-        $this->Country = $row['Country'];
-        $this->Contact_Person = $row['Contact_Person'];
-        $this->Phone_Number = $row['Phone_Number'];
-        $this->Email = $row['Email'];
-        $this->Mobile_Number = $row['Mobile_Number'];
+        $this->Purchase_ID = $row['Purchase_ID'];
+        $this->Purchase_Number = $row['Purchase_Number'];
+        $this->Purchase_Date = $row['Purchase_Date'];
+        $this->Supplier_ID = $row['Supplier_ID'];
         $this->Notes = $row['Notes'];
-        $this->Balance = $row['Balance'];
+        $this->Total_Amount = $row['Total_Amount'];
+        $this->Total_Payment = $row['Total_Payment'];
+        $this->Total_Balance = $row['Total_Balance'];
         $this->Date_Added = $row['Date_Added'];
         $this->Added_By = $row['Added_By'];
         $this->Date_Updated = $row['Date_Updated'];
         $this->Updated_By = $row['Updated_By'];
+       
 
-  
 
     }
 
@@ -123,12 +111,13 @@ class Supplier{
                     " . $this->table_name . "
                 SET
 
-                    Supplier_Number=:Supplier_Number,
-                    Supplier_Name=:Supplier_Name,
+                    Customer_Number=:Customer_Number,
+                    Customer_Name=:Customer_Name,
                     Address=:Address,
                     City=:City,
                     Country=:Country,
                     Contact_Person=:Contact_Person,
+                    Contact_Type=:Contact_Type,
                     Phone_Number=:Phone_Number,
                     Email=:Email,
                     Mobile_Number=:Mobile_Number,
@@ -142,13 +131,14 @@ class Supplier{
         $stmt = $this->conn->prepare($query);
  
         // posted values
-        //$this->Supplier_Id = htmlspecialchars(strip_tags($this->Supplier_Id));
-        $this->Supplier_Number = htmlspecialchars(strip_tags($this->Supplier_Number));
-        $this->Supplier_Name = htmlspecialchars(strip_tags($this->Supplier_Name));
+        //$this->Customer_Id = htmlspecialchars(strip_tags($this->Customer_Id));
+        $this->Customer_Number = htmlspecialchars(strip_tags($this->Customer_Number));
+        $this->Customer_Name = htmlspecialchars(strip_tags($this->Customer_Name));
         $this->Address = htmlspecialchars(strip_tags($this->Address));
         $this->City = htmlspecialchars(strip_tags($this->City));
         $this->Country = htmlspecialchars(strip_tags($this->Country));
         $this->Contact_Person = htmlspecialchars(strip_tags($this->Contact_Person));
+        $this->Customer_Type = htmlspecialchars(strip_tags($this->Customer_Type));
         $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
         $this->Email = htmlspecialchars(strip_tags($this->Email));
         $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
@@ -164,13 +154,14 @@ class Supplier{
         $this->Added_By = 'Administrator';
  
         // bind values
-        //$stmt->bindParam(":Supplier_Id", $this->Supplier_Id);
-        $stmt->bindParam(":Supplier_Number", $this->Supplier_Number);
-        $stmt->bindParam(":Supplier_Name", $this->Supplier_Name);
+        //$stmt->bindParam(":Customer_Id", $this->Customer_Id);
+        $stmt->bindParam(":Customer_Number", $this->Customer_Number);
+        $stmt->bindParam(":Customer_Name", $this->Customer_Name);
         $stmt->bindParam(":Address", $this->Address);
         $stmt->bindParam(":City", $this->City);
         $stmt->bindParam(":Country", $this->Country);
         $stmt->bindParam(":Contact_Person", $this->Contact_Person);
+        $stmt->bindParam(":Customer_Type", $this->Customer_Type);
         $stmt->bindParam(":Phone_Number", $this->Phone_Number);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
@@ -194,47 +185,43 @@ class Supplier{
     $query = "UPDATE
                 " . $this->table_name . "
             SET
-                Supplier_Name=:Supplier_Name,
-                Address=:Address,
-                City=:City,
-                Country=:Country,
-                Contact_Person=:Contact_Person,
-                Phone_Number=:Phone_Number,
-                Email=:Email,
-                Mobile_Number=:Mobile_Number,
-                Notes=:Notes
+                Purchase_Date=:Purchase_Date,
+                Supplier_ID=:Supplier_ID,
+                Notes=:Notes,
+                Total_Amount=:Total_Amount,
+                Total_Payment=:Total_Payment,
+                Total_Balance=:Total_Balance
+        
             WHERE
-                Supplier_Id = :Supplier_Id";
+                Purchase_ID = :Purchase_ID";
  
     $stmt = $this->conn->prepare($query);
  
     // posted values
-        $this->Supplier_Id = htmlspecialchars(strip_tags($this->Supplier_Id));
-        $this->Supplier_Name = htmlspecialchars(strip_tags($this->Supplier_Name));
-        $this->Address = htmlspecialchars(strip_tags($this->Address));
-        $this->City = htmlspecialchars(strip_tags($this->City));
-        $this->Country = htmlspecialchars(strip_tags($this->Country));
-        $this->Contact_Person = htmlspecialchars(strip_tags($this->Contact_Person));
-        $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
-        $this->Email = htmlspecialchars(strip_tags($this->Email));
-        $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
+        $this->Purchase_ID = htmlspecialchars(strip_tags($this->Purchase_ID));
+        //$this->Customer_Name = htmlspecialchars(strip_tags($this->Customer_Name));
+        $this->Purchase_Date = htmlspecialchars(strip_tags($this->Purchase_Date));
+        $this->Supplier_ID = htmlspecialchars(strip_tags($this->Supplier_ID));
         $this->Notes = htmlspecialchars(strip_tags($this->Notes));
+        $this->Total_Amount = htmlspecialchars(strip_tags($this->Total_Amount));
+        $this->Total_Payment = htmlspecialchars(strip_tags($this->Total_Payment));
+        $this->Total_Balance = htmlspecialchars(strip_tags($this->Total_Balance));
+
         //$this->Balance = htmlspecialchars(strip_tags($this->Balance));
  
         // to get time-stamp for 'created' field
         //$this->timestamp = date('Y-m-d H:i:s');
  
         // bind values
-        $stmt->bindParam(":Supplier_Id", $this->Supplier_Id);
-        $stmt->bindParam(":Supplier_Name", $this->Supplier_Name);
-        $stmt->bindParam(":Address", $this->Address);
-        $stmt->bindParam(":City", $this->City);
-        $stmt->bindParam(":Country", $this->Country);
-        $stmt->bindParam(":Contact_Person", $this->Contact_Person);
-        $stmt->bindParam(":Phone_Number", $this->Phone_Number);
-        $stmt->bindParam(":Email", $this->Email);
-        $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
+        $stmt->bindParam(":Purchase_ID", $this->Purchase_ID);
+        //$stmt->bindParam(":Customer_Name", $this->Customer_Name);
+        $stmt->bindParam(":Purchase_Date", $this->Purchase_Date);
+        $stmt->bindParam(":Supplier_ID", $this->Supplier_ID);
         $stmt->bindParam(":Notes", $this->Notes);
+        $stmt->bindParam(":Total_Amount", $this->Total_Amount);
+        $stmt->bindParam(":Total_Payment", $this->Total_Payment);
+        $stmt->bindParam(":Total_Balance", $this->Total_Balance);
+     
         //$stmt->bindParam(":Balance", $this->Balance);
         //$stmt->bindParam(":Date_Updated", $this->timestamp);
         //$stmt->bindParam(":Updated_By", $this->timestamp);
@@ -246,7 +233,9 @@ class Supplier{
             return false;
         }
  
+    
 
+    echo $query;
      
     }
 
@@ -254,7 +243,7 @@ class Supplier{
 // delete the product
 function delete(){
  
-    $query = "DELETE FROM " . $this->table_name . " WHERE Supplier_Id = ?";
+    $query = "DELETE FROM " . $this->table_name . " WHERE Purchase_ID = ?";
      
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(1, $this->id);
@@ -281,17 +270,14 @@ function delete(){
                     " . $this->table_name . "
                 SET
 
-                    Supplier_Number=:Supplier_Number,
-                    Supplier_Name=:Supplier_Name,
-                    Address=:Address,
-                    City=:City,
-                    Country=:Country,
-                    Contact_Person=:Contact_Person,
-                    Phone_Number=:Phone_Number,
-                    Email=:Email,
-                    Mobile_Number=:Mobile_Number,
+                
+                    Purchase_Number=:Purchase_Number,
+                    Purchase_Date=:Purchase_Date,
+                    Supplier_ID=:Supplier_ID,
                     Notes=:Notes,
-                    Balance=:Balance,
+                    Total_Amount=:Total_Amount,
+                    Total_Payment=:Total_Payment,
+                    Total_Balance=:Total_Balance,
                     Date_Added=:Date_Added,
                     Added_By=:Added_By,
                     Date_Updated=:Date_Updated,
@@ -300,18 +286,14 @@ function delete(){
         $stmt = $this->conn->prepare($query);
  
         // posted values
-        //$this->Supplier_Id = htmlspecialchars(strip_tags($this->Supplier_Id));
-        $this->Supplier_Number = htmlspecialchars(strip_tags($this->Supplier_Number));
-        $this->Supplier_Name = htmlspecialchars(strip_tags($this->Supplier_Name));
-        $this->Address = htmlspecialchars(strip_tags($this->Address));
-        $this->City = htmlspecialchars(strip_tags($this->City));
-        $this->Country = htmlspecialchars(strip_tags($this->Country));
-        $this->Contact_Person = htmlspecialchars(strip_tags($this->Contact_Person));
-        $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
-        $this->Email = htmlspecialchars(strip_tags($this->Email));
-        $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
+        //$this->Customer_Id = htmlspecialchars(strip_tags($this->Customer_Id));
+        $this->Purchase_Number = htmlspecialchars(strip_tags($this->Purchase_Number));
+        $this->Purchase_Date = htmlspecialchars(strip_tags($this->Purchase_Date));
+        $this->Supplier_ID = htmlspecialchars(strip_tags($this->Supplier_ID));
         $this->Notes = htmlspecialchars(strip_tags($this->Notes));
-        $this->Balance = htmlspecialchars(strip_tags($this->Balance));
+        $this->Total_Amount = htmlspecialchars(strip_tags($this->Total_Amount));
+        $this->Total_Payment = htmlspecialchars(strip_tags($this->Total_Payment));
+        $this->Total_Balance = htmlspecialchars(strip_tags($this->Total_Balance));
         $this->Date_Added = htmlspecialchars(strip_tags($this->Date_Added));
         $this->Added_By = htmlspecialchars(strip_tags($this->Added_By));
         $this->Date_Updated = htmlspecialchars(strip_tags($this->Date_Updated));
@@ -322,18 +304,14 @@ function delete(){
         $this->Added_By = 'Administrator';
  
         // bind values
-        //$stmt->bindParam(":Supplier_Id", $this->Supplier_Id);
-        $stmt->bindParam(":Supplier_Number", $this->Supplier_Number);
-        $stmt->bindParam(":Supplier_Name", $this->Supplier_Name);
-        $stmt->bindParam(":Address", $this->Address);
-        $stmt->bindParam(":City", $this->City);
-        $stmt->bindParam(":Country", $this->Country);
-        $stmt->bindParam(":Contact_Person", $this->Contact_Person);
-        $stmt->bindParam(":Phone_Number", $this->Phone_Number);
-        $stmt->bindParam(":Email", $this->Email);
-        $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
+        //$stmt->bindParam(":Customer_Id", $this->Customer_Id);
+        $stmt->bindParam(":Purchase_Number", $this->Purchase_Number);
+        $stmt->bindParam(":Purchase_Date", $this->Purchase_Date);
+        $stmt->bindParam(":Supplier_ID", $this->Supplier_ID);
         $stmt->bindParam(":Notes", $this->Notes);
-        $stmt->bindParam(":Balance", $this->Balance);
+        $stmt->bindParam(":Total_Amount", $this->Total_Amount);
+        $stmt->bindParam(":Total_Payment", $this->Total_Payment);
+        $stmt->bindParam(":Total_Balance", $this->Total_Balance);
         $stmt->bindParam(":Date_Added", $this->timestamp);
         $stmt->bindParam(":Added_By", $this->Added_By);
         $stmt->bindParam(":Date_Updated", $this->timestamp);
@@ -360,22 +338,22 @@ function delete(){
     }
  
     
-
-
 function readName(){
  
     $query = "SELECT
-                Supplier_Name, Supplier_Id, Supplier_Number
+                Customer_Name, Customer_ID, Customer_Number
             FROM
                 " . $this->table_name . "
             ORDER BY
-                Supplier_Name ASC";
+                Customer_Name ASC";
            
     $stmt = $this->conn->prepare( $query );
     $stmt->execute();
  
     return $stmt;
     }
+
+
 
 
 

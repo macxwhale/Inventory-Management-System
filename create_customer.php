@@ -16,20 +16,18 @@ $customer = new customer($db);
 include_once'header.php';
 include_once 'nav/side_nav.php';
 
-echo '</div>'; // End Page title Div
-echo "<br>"; //Spacing
-
 
 // if the form was submitted - PHP OOP CRUD Tutorial
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
  
   // set product property values
-	$customer->Customer_Number = "CN" . rand();
+	$customer->Customer_Number = "CUN" . rand();
 	$customer->Customer_Name = $_POST['Customer_Name'];
 	$customer->Address = $_POST['Address'];
 	$customer->City = $_POST['City'];
 	$customer->Country = $_POST['Country'];
 	$customer->Contact_Person = $_POST['Contact_Person'];
+    $customer->Customer_Type = $_POST['Customer_Type'];
 	$customer->Phone_Number = $_POST['Phone_Number'];
 	$customer->Email = $_POST['Email'];
 	$customer->Mobile_Number = $_POST['Mobile_Number'];
@@ -59,7 +57,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
 
 ?>
 
-<div class="container w3-card-4 w3-col m8 l9 "> <br> <!-- form container -->
  
   <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" 
     method="POST"> <!-- Form -->
@@ -112,6 +109,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
     </div>
 
     <div class="form-group">
+    <label class="col-sm-4 control-label">Customer Type</label>
+    <div class="col-sm-8">
+
+    <label class="checkbox-inline">
+        <input type="radio" name="Customer_Type" 
+        <?php if (isset($customer_type) && $customer_type == "Cash") echo "checked"; ?> value="Cash"> 
+        Cash
+    </label>
+
+    <label class="checkbox-inline">
+        <input type="radio" name="Customer_Type" 
+        <?php if (isset($customer_type) && $customer_type == "Credit") echo "checked"; ?> value="Credit"> Credit
+    </label>
+    </div>
+    </div>
+
+    <div class="form-group">
     <label class="col-sm-4 control-label">Phone Number</label>
     <div class="col-sm-8">
     <input class="form-control" id="focusedInput" type="text" name="Phone_Number" required="required">
@@ -149,6 +163,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
     </div>	
 
   </form> <!-- End of form -->
-</div> <!-- form container -->
 
 <?php include ('footer.php'); ?>

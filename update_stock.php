@@ -9,6 +9,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing id.');
 // include database and object files
 include_once 'config/database.php';
 include_once 'objects/stocks.php';
+include_once 'objects/stock_categories.php';
  
 // get database connection
 $database = new Database();
@@ -16,12 +17,16 @@ $db = $database->getConnection();
  
 // prepare objects
 $stock = new Stock($db);
+$stock_cat = new Stock_Cat($db);
  
 // set ID property of product to be read
 $stock->Stock_Id = $id;
  
 // read the details of product to be read
 $stock->readOne();
+
+$stock_cat_stmt = $stock_cat->readName();
+$stock_cat_num = $stock_cat_stmt->rowCount();
 
 
 include_once'header.php';
@@ -76,12 +81,22 @@ value="" disabled>
 </div>
 </div> -->
 
+
 <div class="form-group">
-<label class="col-sm-4 control-label">Category</label>
+<label class="col-sm-4 control-label">Category </label>
 <div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Category" 
-value="<?php echo $stock->Category;?>" 
-required="required">
+<?php if ($stock_cat_num>0) {?>
+<select class="form-control" id="sel1" name="Category">
+<?php 
+    while ($st_row = $stock_cat_stmt->fetch(PDO::FETCH_ASSOC)){
+    extract($st_row); 
+        echo "<option value=\"{$Category_ID}\">{$Category_Name}</option>";
+    
+    }
+}
+?>   
+
+</select>
 </div>
 </div>
 
@@ -90,7 +105,7 @@ required="required">
 <div class="col-sm-8">
 <input class="form-control" id="focusedInput" type="text" name="Supplier_Number" 
 value="<?php echo $stock->Supplier_Number;?>" 
-required="required">
+required="required" disabled>
 </div>
 </div>
 
@@ -98,7 +113,7 @@ required="required">
 <label class="col-sm-4 control-label">Stock Number</label>
 <div class="col-sm-8">
 <input class="form-control" id="focusedInput" type="text" name="Stock_Number" 
-value="<?php echo $stock->Stock_Number;?>" required="required">
+value="<?php echo $stock->Stock_Number;?>" required="required" disabled>
 </div>
 </div>
 
@@ -106,7 +121,7 @@ value="<?php echo $stock->Stock_Number;?>" required="required">
 <label class="col-sm-4 control-label">Stock Name</label>
 <div class="col-sm-8">
 <input class="form-control" id="focusedInput" type="text" name="Stock_Name" 
-value="<?php echo $stock->Stock_Name;?>" required="required">
+value="<?php echo $stock->Stock_Name;?>" required="required"> 
 </div>
 </div>
 

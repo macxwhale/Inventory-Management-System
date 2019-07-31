@@ -14,6 +14,7 @@ class Customer{
     public $City;
     public $Country;
     public $Contact_Person;
+    public $Customer_Type;
     public $Phone_Number;
     public $Email;
     public $Mobile_Number;
@@ -33,7 +34,7 @@ class Customer{
     function readAll($from_record_num, $records_per_page){
  
     $query = "SELECT
-                Customer_Id, Customer_Number, Customer_Name, Contact_Person, Phone_Number, Mobile_Number, Balance
+                Customer_Id, Customer_Number, Customer_Name, Contact_Person, Phone_Number, Mobile_Number, Balance, Customer_Type
             FROM
                 " . $this->table_name . "
             ORDER BY
@@ -71,6 +72,7 @@ class Customer{
                         City,
                         Country,
                         Contact_Person,
+                        Customer_Type,
                         Phone_Number,
                         Email,
                         Mobile_Number,
@@ -100,6 +102,7 @@ class Customer{
         $this->City = $row['City'];
         $this->Country = $row['Country'];
         $this->Contact_Person = $row['Contact_Person'];
+        $this->Customer_Type = $row['Customer_Type'];
         $this->Phone_Number = $row['Phone_Number'];
         $this->Email = $row['Email'];
         $this->Mobile_Number = $row['Mobile_Number'];
@@ -109,6 +112,7 @@ class Customer{
         $this->Added_By = $row['Added_By'];
         $this->Date_Updated = $row['Date_Updated'];
         $this->Updated_By = $row['Updated_By'];
+       
 
     }
 
@@ -127,6 +131,7 @@ class Customer{
                     City=:City,
                     Country=:Country,
                     Contact_Person=:Contact_Person,
+                    Contact_Type=:Contact_Type,
                     Phone_Number=:Phone_Number,
                     Email=:Email,
                     Mobile_Number=:Mobile_Number,
@@ -147,6 +152,7 @@ class Customer{
         $this->City = htmlspecialchars(strip_tags($this->City));
         $this->Country = htmlspecialchars(strip_tags($this->Country));
         $this->Contact_Person = htmlspecialchars(strip_tags($this->Contact_Person));
+        $this->Customer_Type = htmlspecialchars(strip_tags($this->Customer_Type));
         $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
         $this->Email = htmlspecialchars(strip_tags($this->Email));
         $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
@@ -169,6 +175,7 @@ class Customer{
         $stmt->bindParam(":City", $this->City);
         $stmt->bindParam(":Country", $this->Country);
         $stmt->bindParam(":Contact_Person", $this->Contact_Person);
+        $stmt->bindParam(":Customer_Type", $this->Customer_Type);
         $stmt->bindParam(":Phone_Number", $this->Phone_Number);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
@@ -197,6 +204,7 @@ class Customer{
                 City=:City,
                 Country=:Country,
                 Contact_Person=:Contact_Person,
+                Customer_Type=:Customer_Type,
                 Phone_Number=:Phone_Number,
                 Email=:Email,
                 Mobile_Number=:Mobile_Number,
@@ -208,11 +216,12 @@ class Customer{
  
     // posted values
         $this->Customer_Id = htmlspecialchars(strip_tags($this->Customer_Id));
-        $this->Customer_Name = htmlspecialchars(strip_tags($this->Customer_Name));
+        //$this->Customer_Name = htmlspecialchars(strip_tags($this->Customer_Name));
         $this->Address = htmlspecialchars(strip_tags($this->Address));
         $this->City = htmlspecialchars(strip_tags($this->City));
         $this->Country = htmlspecialchars(strip_tags($this->Country));
         $this->Contact_Person = htmlspecialchars(strip_tags($this->Contact_Person));
+        $this->Customer_Type = htmlspecialchars(strip_tags($this->Customer_Type));
         $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
         $this->Email = htmlspecialchars(strip_tags($this->Email));
         $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
@@ -224,11 +233,12 @@ class Customer{
  
         // bind values
         $stmt->bindParam(":Customer_Id", $this->Customer_Id);
-        $stmt->bindParam(":Customer_Name", $this->Customer_Name);
+        //$stmt->bindParam(":Customer_Name", $this->Customer_Name);
         $stmt->bindParam(":Address", $this->Address);
         $stmt->bindParam(":City", $this->City);
         $stmt->bindParam(":Country", $this->Country);
         $stmt->bindParam(":Contact_Person", $this->Contact_Person);
+        $stmt->bindParam(":Customer_Type", $this->Customer_Type);
         $stmt->bindParam(":Phone_Number", $this->Phone_Number);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
@@ -287,6 +297,7 @@ function delete(){
                     City=:City,
                     Country=:Country,
                     Contact_Person=:Contact_Person,
+                    Customer_Type=:Customer_Type,
                     Phone_Number=:Phone_Number,
                     Email=:Email,
                     Mobile_Number=:Mobile_Number,
@@ -307,6 +318,7 @@ function delete(){
         $this->City = htmlspecialchars(strip_tags($this->City));
         $this->Country = htmlspecialchars(strip_tags($this->Country));
         $this->Contact_Person = htmlspecialchars(strip_tags($this->Contact_Person));
+        $this->Customer_Type = htmlspecialchars(strip_tags($this->Customer_Type));
         $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
         $this->Email = htmlspecialchars(strip_tags($this->Email));
         $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
@@ -329,6 +341,7 @@ function delete(){
         $stmt->bindParam(":City", $this->City);
         $stmt->bindParam(":Country", $this->Country);
         $stmt->bindParam(":Contact_Person", $this->Contact_Person);
+        $stmt->bindParam(":Customer_Type", $this->Customer_Type);
         $stmt->bindParam(":Phone_Number", $this->Phone_Number);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
@@ -360,7 +373,20 @@ function delete(){
     }
  
     
-
+function readName(){
+ 
+    $query = "SELECT
+                Customer_Name, Customer_ID, Customer_Number
+            FROM
+                " . $this->table_name . "
+            ORDER BY
+                Customer_Name ASC";
+           
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+ 
+    return $stmt;
+    }
 
 
 

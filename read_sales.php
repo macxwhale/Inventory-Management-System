@@ -42,7 +42,7 @@ include_once 'nav/side_nav.php';
     "<tr>
       <th>Sale Number</th>
       <th>Sales Date</th>
-      <th>Customer Id</th>
+      <th>Customer ID</th>
       <th>Total Amount</th>
       <th>Final Total Amount</th>
       <th>Total Payment</th>
@@ -63,15 +63,15 @@ include_once 'nav/side_nav.php';
       <td> {$Total_Payment} </td>
     
       <td>
-        <a href='details_sale.php?id={$Sales_ID}' class='w3-button w3-blue left-margin'>
+        <a href='view_sale.php?id={$Sales_ID}' class='w3-button w3-blue left-margin w3-round'>
         <span class='glyphicon glyphicon-list'></span> 
         </a>
 
-        <a href='update_sale.php?id={$Sales_ID}' class='w3-button w3-green left-margin'>
+        <a href='update_sale.php?id={$Sales_ID}' class='w3-button w3-green left-margin w3-round'>
         <span class='glyphicon glyphicon-edit'></span> 
         </a>
 
-        <a delete-id='{$Sales_ID}' class='w3-button w3-red left-margin delete-object'>
+        <a delete-id='{$Sales_ID}' class='w3-button w3-red left-margin delete-object w3-round'>
         <span class='glyphicon glyphicon-remove'></span> 
         </a>
       </td>

@@ -50,7 +50,7 @@ echo
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Contact_Person</th>
+    <th class=\"w3-right-align\">Contact Person</th>
     <td>{$supplier->Contact_Person}</td>
   </tr>
 

@@ -90,12 +90,36 @@ $(document).on('click', '.delete-object', function(){
                 });
             } 
 
+            if(result==true){
+                $.post('delete_stock_cat.php', {
+                    object_id: id
+                }, function(data){
+                    location.reload();
+                }).fail(function() {
+                    alert('Unable to delete.');
+                });
+            }
+
+            if(result==true){
+                $.post('delete_purchase.php', {
+                    object_id: id
+                }, function(data){
+                    location.reload();
+                }).fail(function() {
+                    alert('Unable to delete.');
+                });
+            }
+
 
         }
     });
  
     return false;
 });
+
+
+
+
 </script>
 
 </body>

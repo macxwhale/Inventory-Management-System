@@ -61,7 +61,7 @@ include_once 'nav/side_nav.php';
       <td> {$Mobile_Number}</td>
       <td> {$Balance} </td>
       <td>
-        <a href='details_supplier.php?id={$Supplier_Id}' class='w3-button w3-blue left-margin w3-round'>
+        <a href='view_supplier.php?id={$Supplier_Id}' class='w3-button w3-blue left-margin w3-round'>
         <span class='glyphicon glyphicon-list'></span> 
         </a>
 

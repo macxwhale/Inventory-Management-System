@@ -31,15 +31,17 @@ include_once 'nav/side_nav.php';
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
  
   // set product property values
-	$Supplier->Supplier_Name = $_POST['Supplier_Name'];
-	$Supplier->Address = $_POST['Address'];
-	$Supplier->City = $_POST['City'];
-	$Supplier->Country = $_POST['Country'];
-	$Supplier->Contact_Person = $_POST['Contact_Person'];
-	$Supplier->Phone_Number = $_POST['Phone_Number'];
-	$Supplier->Email = $_POST['Email'];
-	$Supplier->Mobile_Number = $_POST['Mobile_Number'];
-	$Supplier->Notes = $_POST['Notes'];
+	$supplier->Supplier_Name = $_POST['Supplier_Name'];
+	$supplier->Address = $_POST['Address'];
+	$supplier->City = $_POST['City'];
+	$supplier->Country = $_POST['Country'];
+	$supplier->Contact_Person = $_POST['Contact_Person'];
+	$supplier->Phone_Number = $_POST['Phone_Number'];
+	$supplier->Email = $_POST['Email'];
+	$supplier->Mobile_Number = $_POST['Mobile_Number'];
+	$supplier->Notes = $_POST['Notes'];
+
+  print_r($_POST);
  
 	if($supplier->update()){
       echo 

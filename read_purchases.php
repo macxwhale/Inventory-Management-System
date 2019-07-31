@@ -3,12 +3,12 @@
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 // Set header title
-$header_title = "Stock";
+$header_title = "Purchases";
 // Set page title
-$page_title = "Stock";
+$page_title = "Purchases";
 
-$page_link = "create_stock.php";
-$page_action = "Add Stock";
+$page_link = "create_purchase.php";
+$page_action = "Add Purchase";
  
 // set number of records per page
 $records_per_page = 5;
@@ -18,19 +18,19 @@ $from_record_num = ($records_per_page * $page) - $records_per_page;
 
 // include database and object files
 include_once 'config/database.php'; 
-include_once 'objects/stocks.php'; 
+include_once 'objects/purchases.php'; 
 
 // instantiate database and objects
 $database = new Database();
 $db = $database->getConnection();
  
-$stock = new Stock($db);
+$purchase = new Purchase($db);
  
 // query products
-$stmt = $stock->readAll($from_record_num, $records_per_page);
+$stmt = $purchase->readAll($from_record_num, $records_per_page);
 $num = $stmt->rowCount();
 
-include_once'header.php';
+include_once 'header.php';
 include_once 'nav/side_nav.php';
 
   // Table
@@ -40,14 +40,11 @@ include_once 'nav/side_nav.php';
   if ($num>0) {
   echo 
     "<tr>
-      <th> </th>
-      <th>Supplier Number</th>
-      <th>Stock Number</th>
-      <th>Stock Name</th>
-      <th>Stock Brand</th>
-     
-      <th>Selling Price</th>
-      <th>Quantity</th>
+      <th>Purchase Number</th>
+      <th>Purchase Date</th>
+      <th>Supplier ID</th>
+      <th>Total Amount</th>
+      <th>Total Payment</th>
       <th>Action</th>
     </tr>";
 
@@ -56,50 +53,43 @@ include_once 'nav/side_nav.php';
 
   echo 
     "<tr>
+      <td> {$Purchase_Number} </td>
+      <td> {$Purchase_Date} </td>
+      <td> {$Supplier_ID}</td>
+      <td> {$Total_Amount} </td>
+      <td> {$Total_Payment} </td>
       <td>
-        <a href=\"#\">Sales <span class=\"w3-badge w3-blue\">6</span></a>
-        <a href=\"#\">Purchases <span class=\"w3-badge w3-green\">6</span></a>
-      </a>
-
-      </td>
-      <td> {$Supplier_Number} </td>
-      <td> {$Stock_Number} </td>
-      <td> {$Stock_Name} </td>
-      <td> {Brand_Name} </td>
-     
-      <td> {$Selling_Price} </td>
-      <td> {$Quantity}</td>
-      <td>
-        <a href='view_stock.php?id={$Stock_Id}' class='w3-button w3-blue left-margin w3-round'>
-        <span class='glyphicon glyphicon-th-list'></span> 
+        <a href='view_purchase.php?id={$Purchase_ID}' class='w3-button w3-blue left-margin w3-round'>
+        <span class='glyphicon glyphicon-list'></span> 
         </a>
 
-        <a href='update_stock.php?id={$Stock_Id}' class='w3-button w3-green left-margin w3-round'>
+        <a href='update_purchase.php?id={$Purchase_ID}' class='w3-button w3-green left-margin w3-round'>
         <span class='glyphicon glyphicon-edit'></span> 
         </a>
 
-       <a delete-id='{$Stock_Id}' class='w3-button w3-red left-margin delete-object w3-round'>
-        <span class='glyphicon glyphicon-trash'></span> 
+        <a delete-id='{$Purchase_ID}' class='w3-button w3-red left-margin delete-object w3-round'>
+        <span class='glyphicon glyphicon-remove'></span> 
         </a>
       </td>
     </tr>";
   }
   
-$page_url = "read_stock.php?";
+$page_url = "read_purchases.php?";
  
 // count all products in the database to calculate total pages
-$total_rows = $stock->countAll();
+$total_rows = $purchase->countAll();
 
 echo "</table><br>"; // End of Table
 
 // paging buttons here
 include_once 'paging.php';
 
+
 } else {
   echo 
       "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
       <h3>Alert!</h3>
-      <p>No Stocks Found!!!</p>
+      <p>No Purchases Found!!!</p>
       </div>";
 }
 

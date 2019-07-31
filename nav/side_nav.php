@@ -38,12 +38,27 @@
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
 
-    <a href="index.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
-    <a href="read_stock.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Stock</a>
-    <a href="read_suppliers.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Suppliers</a>
-    <a href="read_customers.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Customers</a>
-    <a href="read_sales.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Sales</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+    <a href="index.php" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-users fa-fw"></i>  Overview</a>
+
+    <a href="read_stock.php" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-eye fa-fw"></i>  Stock</a>
+
+    <a href="read_stock_cat.php" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-eye fa-fw"></i>  Stock Categories</a>
+
+    <a href="read_suppliers.php" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-users fa-fw"></i>  Suppliers</a>
+
+    <a href="read_customers.php" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-bullseye fa-fw"></i>  Customers</a>
+
+    <a href="read_sales.php" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-diamond fa-fw"></i>  Sales</a>
+
+    <a href="read_purchases.php" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-bell fa-fw"></i>  Purchases</a>
+
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
     <a href="#" class="w3-bar-item w3-button w3-padding "><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
@@ -64,14 +79,14 @@
 
 <!-- Header -->
 <header class="w3-container" style="padding-top:22px">
-    <div class="w3-col m4 l9">
+    <div class="w3-col m4 l10">
         <h3><b><?php echo $page_title; ?></b></h3>
     </div>
 
     <?php 
 
 
-      if ($_SERVER["PHP_SELF"] ==  "/pos/read_stock.php") {
+      if ($_SERVER["PHP_SELF"] ==  "/pos/read_stock.php" ) {
         echo "<a href=\" $page_link \" class=\"w3-btn w3-blue w3-round\"> $page_action </a>";
       } elseif ($_SERVER["PHP_SELF"] == "/pos/read_customers.php") {
         echo "<a href=\" $page_link \" class=\"w3-btn w3-blue w3-round\"> $page_action </a>";
@@ -79,9 +94,15 @@
         echo "<a href=\" $page_link \" class=\"w3-btn w3-blue w3-round\"> $page_action </a>";
       } elseif ($_SERVER["PHP_SELF"] == "/pos/read_sales.php") {
         echo "<a href=\" $page_link \" class=\"w3-btn w3-blue w3-round\"> $page_action </a>";
+      } elseif ($_SERVER["PHP_SELF"] == "/pos/read_stock_cat.php") {
+        echo "<a href=\" $page_link \" class=\"w3-btn w3-blue w3-round\"> $page_action </a>";
+      } elseif ($_SERVER["PHP_SELF"] == "/pos/read_purchases.php") {
+        echo "<a href=\" $page_link \" class=\"w3-btn w3-blue w3-round\"> $page_action </a>";
       } else {
 
       }
+
+
 
     ?>
     
