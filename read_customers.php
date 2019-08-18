@@ -3,7 +3,7 @@
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 // Set header title
-$header_title = "Customers";
+$header_title = "Customers"; 
 // Set page title
 $page_title = "Customers";
 
@@ -45,7 +45,6 @@ include_once 'nav/side_nav.php';
       <th>Contact Person</th>
       <th>Customer Type</th>
       <th>Phone Number</th>
-      <th>Balance</th>
       <th>Action</th>
     </tr>";
 
@@ -59,7 +58,6 @@ include_once 'nav/side_nav.php';
       <td> {$Contact_Person} </td>
       <td> {$Customer_Type}</td>
       <td> {$Phone_Number} </td>
-      <td> {$Balance} </td>
       <td>
         <a href='view_customer.php?id={$Customer_Id}' class='w3-button w3-blue left-margin w3-round'>
         <span class='glyphicon glyphicon-list'></span> 

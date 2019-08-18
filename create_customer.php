@@ -31,13 +31,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
 	$customer->Phone_Number = $_POST['Phone_Number'];
 	$customer->Email = $_POST['Email'];
 	$customer->Mobile_Number = $_POST['Mobile_Number'];
-	$customer->Notes = $_POST['Notes'];
 
-  print_r($_POST);
-	
+
  // create the product
   if($customer->create()){
-    $current_url = "create_customer.php";
+   
 
     echo 
       "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
@@ -53,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
       </div>";
   }
     
-}
+} 
 
 ?>
 
@@ -111,15 +109,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
     <div class="form-group">
     <label class="col-sm-4 control-label">Customer Type</label>
     <div class="col-sm-8">
-
     <label class="checkbox-inline">
-        <input type="radio" name="Customer_Type" 
+        <input type="radio" name="Customer_Type" required
         <?php if (isset($customer_type) && $customer_type == "Cash") echo "checked"; ?> value="Cash"> 
         Cash
     </label>
 
     <label class="checkbox-inline">
-        <input type="radio" name="Customer_Type" 
+        <input type="radio" name="Customer_Type" required
         <?php if (isset($customer_type) && $customer_type == "Credit") echo "checked"; ?> value="Credit"> Credit
     </label>
     </div>
@@ -148,17 +145,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
     </div>
 
     <div class="form-group">
-    <label class="col-sm-4 control-label">Notes</label>
-    <div class="col-sm-8">
-    <input class="form-control" id="focusedInput" type="text" name="Notes" required="required">
-    </div>
-    </div>
-
-    <div class="form-group">
     <label class="col-sm-4 control-label"></label>
     <div class="col-sm-4">
     <button type="submit" class="btn btn-primary" name="submit">Add</button>
-    <button type="button" class="btn btn-danger">Cancel</button>
+    <a href="/pos/read_customers.php"><button type="button" class="btn btn-danger">Cancel</button></a>
     </div>
     </div>	
 

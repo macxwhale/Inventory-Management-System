@@ -347,6 +347,21 @@ function delete(){
     }
 
     }
+
+
+    function select(){
+ 
+    $query = "SELECT
+               *
+            FROM
+                " . $this->table_name . "
+            ORDER BY
+                Stock_Name ASC";
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+ 
+    return $stmt;
+    }
  
     
 

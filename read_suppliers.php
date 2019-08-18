@@ -45,7 +45,6 @@ include_once 'nav/side_nav.php';
       <th>Contact Person</th>
       <th>Phone Number</th>
       <th>Mobile Number</th>
-      <th>Balance</th>
       <th>Action</th>
     </tr>";
 
@@ -59,7 +58,6 @@ include_once 'nav/side_nav.php';
       <td> {$Contact_Person} </td>
       <td> {$Phone_Number} </td>
       <td> {$Mobile_Number}</td>
-      <td> {$Balance} </td>
       <td>
         <a href='view_supplier.php?id={$Supplier_Id}' class='w3-button w3-blue left-margin w3-round'>
         <span class='glyphicon glyphicon-list'></span> 
@@ -91,7 +89,7 @@ include_once 'paging.php';
   echo 
       "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
       <h3>Alert!</h3>
-      <p>No Suppliers Found!!!</p>
+      <p>Please Add Suppliers!!!</p>
       </div>";
 }
 

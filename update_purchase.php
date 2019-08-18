@@ -71,8 +71,22 @@ include_once 'nav/side_nav.php';
 action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$purchase->Purchase_ID}");?>" method="POST"> <!-- Form -->
 
 <div class="form-group">
+<label for="dtp_input1" class="col-sm-4 control-label">Purchase Date</label> 
+<div class="input-group date form_datetime col-md-4" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+<input class="form-control" size="16" type="text" value="<?php echo $purchase->Purchase_Date;?>" readonly>
+<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+</div>
+<input type="hidden" id="dtp_input1" value="" 
+name="Purchase_Date"/><br/>
+</div>
+
+<hr>
+
+
+<div class="form-group">
 <label for="disabledInput" class="col-sm-4 control-label">Purchase ID</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <input class="form-control" id="disabledInput" type="text" name="" 
 value="<?php echo $purchase->Purchase_ID;?>" disabled>
 </div>
@@ -80,25 +94,17 @@ value="<?php echo $purchase->Purchase_ID;?>" disabled>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Purchase Number</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <input class="form-control" id="focusedInput" type="text" name="" 
 value="<?php echo $purchase->Purchase_Number;?>" 
 disabled>
 </div>
 </div>
 
-<div class="form-group">
-<label class="col-sm-4 control-label">Purchase Date</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Purchase_Date" 
-value="<?php echo $purchase->Purchase_Date;?>">
-</div>
-</div>
-
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Supplier Number</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <?php if ($supplier_num>0) {?>
 <select class="form-control" id="sel1" name="Supplier_ID">
 <?php 
@@ -116,31 +122,34 @@ value="<?php echo $purchase->Purchase_Date;?>">
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Notes</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <input class="form-control" id="focusedInput" type="text" name="Notes" value="<?php echo $purchase->Notes;?>" required="required">
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Total Amount</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Total_Amount" 
+<div class="input-group col-sm-4">
+<input class="form-control" id="focusedInput" type="number" name="Total_Amount" min="1" max="50000000"
 value="<?php echo $purchase->Total_Amount;?>" required="required">
+<span class="input-group-addon">KES</span>
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Total Payment</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Total_Payment" value="<?php echo $purchase->Total_Payment;?>" required="required">
+<div class="input-group col-sm-4">
+<input class="form-control" id="focusedInput" type="number" name="Total_Payment" min="1" max="50000000"value="<?php echo $purchase->Total_Payment;?>" required="required">
+<span class="input-group-addon">KES</span>
 </div>
 </div>
 
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Total Balance</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Total_Balance" value="<?php echo $purchase->Total_Balance;?>"required="required">
+<div class="input-group col-sm-4">
+<input class="form-control" id="focusedInput" type="number" name="Total_Balance" min="1" max="50000000"value="<?php echo $purchase->Total_Balance;?>"required="required">
+<span class="input-group-addon">KES</span>
 </div>
 </div>
 

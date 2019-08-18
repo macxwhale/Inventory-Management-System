@@ -50,11 +50,6 @@ echo
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Notes </th>
-    <td>{$sale->Notes}</td>
-  </tr>
-
-  <tr>
     <th class=\"w3-right-align\">Total Amount </th>
     <td>{$sale->Total_Amount}</td>
   </tr>
@@ -69,41 +64,7 @@ echo
     <td>{$sale->Total_Balance}</td>
   </tr>
 
-  <tr>
-    <th class=\"w3-right-align\">Discount Type</th>
-    <td>{$sale->Discount_Type}</td>
-  </tr>
-
-  <tr>
-    <th class=\"w3-right-align\"> Discount Percentage</th>
-    <td>{$sale->Discount_Percentage}</td>
-  </tr>
-
-  <tr>
-    <th class=\"w3-right-align\"> Discount Amount</th>
-    <td>{$sale->Discount_Amount}</td>
-  </tr>
-
-  <tr>
-    <th class=\"w3-right-align\"> Tax Percentage</th>
-    <td>{$sale->Tax_Percentage}</td>
-  </tr>
-
-  <tr>
-    <th class=\"w3-right-align\">  Tax Amount</th>
-    <td>{$sale->Tax_Amount}</td>
-  </tr>
-
-  <tr>
-    <th class=\"w3-right-align\">  Tax Description</th>
-    <td>{$sale->Tax_Description}</td>
-  </tr>
-
-  <tr>
-    <th class=\"w3-right-align\"> Final Total Amount</th>
-    <td>{$sale->Final_Total_Amount}</td>
-  </tr>
-
+  
   <tr>
     <th class=\"w3-right-align\">  Date Added</th>
     <td>{$sale->Date_Added}</td>
@@ -125,8 +86,7 @@ echo
   </tr>
 
 </table><br>
-<button class=\"w3-button w3-dark-grey\">More Countries  
-<i class=\"fa fa-arrow-right\"></i></button>";
+<a href=\"/pos/read_sales.php\"><button type=\"button\" class=\"btn btn-danger\">Back</button></a><hr>";
    
 
 ?>

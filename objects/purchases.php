@@ -11,6 +11,8 @@ class Purchase{
     public $Purchase_Number;
     public $Purchase_Date;
     public $Supplier_ID;
+    public $Brand_ID;
+    public $Product_ID;
     public $Notes;
     public $Total_Amount;
     public $Total_Payment;
@@ -23,6 +25,48 @@ class Purchase{
  
     public function __construct($db){
         $this->conn = $db;
+    }
+
+    function read_all($from_record_num, $records_per_page){
+ 
+    $query = "SELECT
+
+                Purchases.Purchase_ID, 
+                Purchases.Purchase_Number, 
+                Purchases.Purchase_Date, 
+                Suppliers.Supplier_Name,
+                Brands.Brand_N,
+                Products.Product_N,
+                Purchases.Total_Amount, 
+                Purchases.Total_Payment, 
+                Purchases.Total_Balance, 
+                Purchases.Date_Added, 
+                Purchases.Added_By, 
+                Purchases.Date_Updated, 
+                Purchases.Updated_By
+            FROM
+                " . $this->table_name . "
+            INNER JOIN 
+                Suppliers  
+            ON 
+                Purchases.Supplier_ID = Suppliers.Supplier_ID 
+            INNER JOIN
+                Brands 
+            ON        
+                Purchases.Brand_ID = Brands.Brand_ID 
+            INNER JOIN
+                Products 
+            ON        
+                Purchases.Product_ID = Products.Product_ID    
+            ORDER BY
+                Purchase_Number ASC
+            LIMIT
+                {$from_record_num}, {$records_per_page}";
+ 
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+ 
+    return $stmt;
     }
 
 
@@ -64,7 +108,6 @@ class Purchase{
                         Purchase_Number,
                         Purchase_Date,
                         Supplier_ID,
-                        Notes,
                         Total_Amount,
                         Total_Payment,
                         Total_Balance,
@@ -274,10 +317,9 @@ function delete(){
                     Purchase_Number=:Purchase_Number,
                     Purchase_Date=:Purchase_Date,
                     Supplier_ID=:Supplier_ID,
-                    Notes=:Notes,
-                    Total_Amount=:Total_Amount,
+                    Brand_ID=:Brand_ID,
+                    Product_ID=:Product_ID,
                     Total_Payment=:Total_Payment,
-                    Total_Balance=:Total_Balance,
                     Date_Added=:Date_Added,
                     Added_By=:Added_By,
                     Date_Updated=:Date_Updated,
@@ -290,10 +332,9 @@ function delete(){
         $this->Purchase_Number = htmlspecialchars(strip_tags($this->Purchase_Number));
         $this->Purchase_Date = htmlspecialchars(strip_tags($this->Purchase_Date));
         $this->Supplier_ID = htmlspecialchars(strip_tags($this->Supplier_ID));
-        $this->Notes = htmlspecialchars(strip_tags($this->Notes));
-        $this->Total_Amount = htmlspecialchars(strip_tags($this->Total_Amount));
+        $this->Brand_ID = htmlspecialchars(strip_tags($this->Brand_ID));
+        $this->Product_ID = htmlspecialchars(strip_tags($this->Product_ID));
         $this->Total_Payment = htmlspecialchars(strip_tags($this->Total_Payment));
-        $this->Total_Balance = htmlspecialchars(strip_tags($this->Total_Balance));
         $this->Date_Added = htmlspecialchars(strip_tags($this->Date_Added));
         $this->Added_By = htmlspecialchars(strip_tags($this->Added_By));
         $this->Date_Updated = htmlspecialchars(strip_tags($this->Date_Updated));
@@ -308,10 +349,9 @@ function delete(){
         $stmt->bindParam(":Purchase_Number", $this->Purchase_Number);
         $stmt->bindParam(":Purchase_Date", $this->Purchase_Date);
         $stmt->bindParam(":Supplier_ID", $this->Supplier_ID);
-        $stmt->bindParam(":Notes", $this->Notes);
-        $stmt->bindParam(":Total_Amount", $this->Total_Amount);
+        $stmt->bindParam(":Brand_ID", $this->Brand_ID);
+        $stmt->bindParam(":Product_ID", $this->Product_ID);
         $stmt->bindParam(":Total_Payment", $this->Total_Payment);
-        $stmt->bindParam(":Total_Balance", $this->Total_Balance);
         $stmt->bindParam(":Date_Added", $this->timestamp);
         $stmt->bindParam(":Added_By", $this->Added_By);
         $stmt->bindParam(":Date_Updated", $this->timestamp);

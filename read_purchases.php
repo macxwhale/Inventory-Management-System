@@ -27,7 +27,7 @@ $db = $database->getConnection();
 $purchase = new Purchase($db);
  
 // query products
-$stmt = $purchase->readAll($from_record_num, $records_per_page);
+$stmt = $purchase->read_all($from_record_num, $records_per_page);
 $num = $stmt->rowCount();
 
 include_once 'header.php';
@@ -42,7 +42,7 @@ include_once 'nav/side_nav.php';
     "<tr>
       <th>Purchase Number</th>
       <th>Purchase Date</th>
-      <th>Supplier ID</th>
+      <th>Supplier Name</th>
       <th>Total Amount</th>
       <th>Total Payment</th>
       <th>Action</th>
@@ -55,7 +55,7 @@ include_once 'nav/side_nav.php';
     "<tr>
       <td> {$Purchase_Number} </td>
       <td> {$Purchase_Date} </td>
-      <td> {$Supplier_ID}</td>
+      <td> {$Supplier_Name}</td>
       <td> {$Total_Amount} </td>
       <td> {$Total_Payment} </td>
       <td>

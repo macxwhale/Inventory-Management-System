@@ -33,8 +33,9 @@ $num = $stmt->rowCount();
 include_once'header.php';
 include_once 'nav/side_nav.php';
 
+
   // Table
-  echo '<table class="w3-table w3-striped w3-bordered w3-border 
+  echo '<table id="employee_grid" class="w3-table w3-striped w3-bordered w3-border 
   w3-hoverable w3-white w3-card-4 w3-table-all">'; 
 
   if ($num>0) {
@@ -44,8 +45,6 @@ include_once 'nav/side_nav.php';
       <th>Supplier Number</th>
       <th>Stock Number</th>
       <th>Stock Name</th>
-      <th>Stock Brand</th>
-     
       <th>Selling Price</th>
       <th>Quantity</th>
       <th>Action</th>
@@ -65,8 +64,6 @@ include_once 'nav/side_nav.php';
       <td> {$Supplier_Number} </td>
       <td> {$Stock_Number} </td>
       <td> {$Stock_Name} </td>
-      <td> {Brand_Name} </td>
-     
       <td> {$Selling_Price} </td>
       <td> {$Quantity}</td>
       <td>
@@ -103,5 +100,10 @@ include_once 'paging.php';
       </div>";
 }
 
+
+
 include_once ('footer.php'); 
 ?>
+
+
+

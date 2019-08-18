@@ -84,7 +84,7 @@ value="" disabled>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Category </label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <?php if ($stock_cat_num>0) {?>
 <select class="form-control" id="sel1" name="Category">
 <?php 
@@ -102,7 +102,7 @@ value="" disabled>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Supplier Number</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <input class="form-control" id="focusedInput" type="text" name="Supplier_Number" 
 value="<?php echo $stock->Supplier_Number;?>" 
 required="required" disabled>
@@ -111,7 +111,7 @@ required="required" disabled>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Stock Number</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <input class="form-control" id="focusedInput" type="text" name="Stock_Number" 
 value="<?php echo $stock->Stock_Number;?>" required="required" disabled>
 </div>
@@ -119,7 +119,7 @@ value="<?php echo $stock->Stock_Number;?>" required="required" disabled>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Stock Name</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <input class="form-control" id="focusedInput" type="text" name="Stock_Name" 
 value="<?php echo $stock->Stock_Name;?>" required="required"> 
 </div>
@@ -127,7 +127,7 @@ value="<?php echo $stock->Stock_Name;?>" required="required">
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Unit Of Measurement</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <input class="form-control" id="focusedInput" type="text" name="Unit_Of_Measurement" 
 value="<?php echo $stock->Unit_Of_Measurement;?>" required="required">
 </div>
@@ -135,30 +135,33 @@ value="<?php echo $stock->Unit_Of_Measurement;?>" required="required">
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Purchasing Price</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Purchasing_Price" 
+<div class="input-group col-sm-4">
+<input class="form-control" id="focusedInput" type="number" min="1" max="50000000" name="Purchasing_Price" 
 value="<?php echo $stock->Purchasing_Price;?>"required="required">
+<span class="input-group-addon">KES</span>
 </div>
 </div>
 
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Selling Price</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Selling_Price" value="<?php echo $stock->Selling_Price;?>" required="required">
+<div class="input-group col-sm-4">
+<input class="form-control" id="focusedInput" type="number" name="Selling_Price" min="1" max="50000000"value="<?php echo $stock->Selling_Price;?>" required="required">
+<span class="input-group-addon">KES</span>
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Quantity</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Quantity" value="<?php echo $stock->Quantity;?>" required="required">
+<div class="input-group col-sm-4">
+<input class="form-control" id="focusedInput" type="number" name="Quantity" value="<?php echo $stock->Quantity;?>" required="required">
+<span class="input-group-addon">#</span>
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-4 control-label">Notes</label>
-<div class="col-sm-8">
+<div class="input-group col-sm-4">
 <input class="form-control" id="focusedInput" type="text" name="Notes" value="<?php echo $stock->Notes;?>"  required="required">
 </div>
 </div>

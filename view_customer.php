@@ -78,10 +78,6 @@ echo
     <td>{$customer->Notes}</td>
   </tr>
 
-  <tr>
-    <th class=\"w3-right-align\">Balance</th>
-    <td>{$customer->Balance}</td>
-  </tr>
 
   <tr>
     <th class=\"w3-right-align\">Date Added</th>
@@ -104,8 +100,8 @@ echo
   </tr>
 
 </table><br>
-<button class=\"w3-button w3-dark-grey\">More Countries  
-<i class=\"fa fa-arrow-right\"></i></button>";
+<a href=\"/pos/read_customers.php\"><button type=\"button\" class=\"btn btn-danger\">Back</button></a><hr>";
+
    
 
 ?>

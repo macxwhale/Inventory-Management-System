@@ -1,27 +1,27 @@
 <?php 
 // Set header title
-$header_title = "Stock Categories";
+$header_title = "Brand";
 // Set page title
-$page_title = "Update Stock Categories";
+$page_title = "Update Brand";
 // get ID of the product to be edited
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing id.');
 
 // include database and object files
 include_once 'config/database.php';
-include_once 'objects/stock_categories.php';
+include_once 'objects/brands.php';
  
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
  
 // prepare objects
-$stock_cat = new Stock_Cat($db);
+$brand = new Brand($db);
  
 // set ID property of product to be read
-$stock_cat->Category_ID = $id;
+$brand->Brand_ID = $id;
  
 // read the details of product to be read
-$stock_cat->readOne();
+$brand->select_one();
 
 
 include_once'header.php';
@@ -32,11 +32,11 @@ include_once 'nav/side_nav.php';
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
  
   // set product property values
-	$stock_cat->Category_Name = $_POST['Category_Name'];
+	$brand->Brand_N = $_POST['Brand_N'];
 	
   print_r($_POST);
  
-	if($stock_cat->update()){
+	if($brand->update()){
       echo 
       "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
       <h3>Alert!</h3>
@@ -59,7 +59,7 @@ include_once 'nav/side_nav.php';
  
 
 <form class="form-horizontal" 
-action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$stock_cat->Category_ID}");?>" method="POST"> <!-- Form -->
+action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$brand->Brand_ID}");?>" method="POST"> <!-- Form -->
 
 <!-- <div class="form-group">
 <label for="disabledInput" class="col-sm-4 control-label">Category</label>
@@ -70,10 +70,10 @@ value="" disabled>
 </div> -->
 
 <div class="form-group">
-<label class="col-sm-4 control-label">Category Name</label>
+<label class="col-sm-4 control-label">Brand Name</label>
 <div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Category_Name" 
-value="<?php echo $stock_cat->Category_Name;?>" 
+<input class="form-control" id="focusedInput" type="text" name="Brand_N" 
+value="<?php echo $brand->Brand_N;?>" 
 required="required">
 </div>
 </div>

@@ -74,7 +74,6 @@ class Supplier{
                         Phone_Number,
                         Email,
                         Mobile_Number,
-                        Notes,
                         Balance,
                         Date_Added,
                         Added_By,
@@ -103,7 +102,7 @@ class Supplier{
         $this->Phone_Number = $row['Phone_Number'];
         $this->Email = $row['Email'];
         $this->Mobile_Number = $row['Mobile_Number'];
-        $this->Notes = $row['Notes'];
+        //$this->Notes = $row['Notes'];
         $this->Balance = $row['Balance'];
         $this->Date_Added = $row['Date_Added'];
         $this->Added_By = $row['Added_By'];
@@ -132,7 +131,6 @@ class Supplier{
                     Phone_Number=:Phone_Number,
                     Email=:Email,
                     Mobile_Number=:Mobile_Number,
-                    Notes=:Notes,
                     Balance=:Balance,
                     Date_Added=:Date_Added,
                     Added_By=:Added_By,
@@ -152,7 +150,6 @@ class Supplier{
         $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
         $this->Email = htmlspecialchars(strip_tags($this->Email));
         $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
-        $this->Notes = htmlspecialchars(strip_tags($this->Notes));
         $this->Balance = htmlspecialchars(strip_tags($this->Balance));
         $this->Date_Added = htmlspecialchars(strip_tags($this->Date_Added));
         $this->Added_By = htmlspecialchars(strip_tags($this->Added_By));
@@ -174,7 +171,6 @@ class Supplier{
         $stmt->bindParam(":Phone_Number", $this->Phone_Number);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
-        $stmt->bindParam(":Notes", $this->Notes);
         $stmt->bindParam(":Balance", $this->Balance);
         $stmt->bindParam(":Date_Added", $this->timestamp);
         $stmt->bindParam(":Added_By", $this->Added_By);
@@ -201,8 +197,8 @@ class Supplier{
                 Contact_Person=:Contact_Person,
                 Phone_Number=:Phone_Number,
                 Email=:Email,
-                Mobile_Number=:Mobile_Number,
-                Notes=:Notes
+                Mobile_Number=:Mobile_Number
+               
             WHERE
                 Supplier_Id = :Supplier_Id";
  
@@ -218,7 +214,7 @@ class Supplier{
         $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
         $this->Email = htmlspecialchars(strip_tags($this->Email));
         $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
-        $this->Notes = htmlspecialchars(strip_tags($this->Notes));
+        //$this->Notes = htmlspecialchars(strip_tags($this->Notes));
         //$this->Balance = htmlspecialchars(strip_tags($this->Balance));
  
         // to get time-stamp for 'created' field
@@ -234,7 +230,7 @@ class Supplier{
         $stmt->bindParam(":Phone_Number", $this->Phone_Number);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
-        $stmt->bindParam(":Notes", $this->Notes);
+       // $stmt->bindParam(":Notes", $this->Notes);
         //$stmt->bindParam(":Balance", $this->Balance);
         //$stmt->bindParam(":Date_Updated", $this->timestamp);
         //$stmt->bindParam(":Updated_By", $this->timestamp);
@@ -290,7 +286,7 @@ function delete(){
                     Phone_Number=:Phone_Number,
                     Email=:Email,
                     Mobile_Number=:Mobile_Number,
-                    Notes=:Notes,
+    
                     Balance=:Balance,
                     Date_Added=:Date_Added,
                     Added_By=:Added_By,
@@ -310,7 +306,7 @@ function delete(){
         $this->Phone_Number = htmlspecialchars(strip_tags($this->Phone_Number));
         $this->Email = htmlspecialchars(strip_tags($this->Email));
         $this->Mobile_Number = htmlspecialchars(strip_tags($this->Mobile_Number));
-        $this->Notes = htmlspecialchars(strip_tags($this->Notes));
+        //$this->Notes = htmlspecialchars(strip_tags($this->Notes));
         $this->Balance = htmlspecialchars(strip_tags($this->Balance));
         $this->Date_Added = htmlspecialchars(strip_tags($this->Date_Added));
         $this->Added_By = htmlspecialchars(strip_tags($this->Added_By));
@@ -332,7 +328,7 @@ function delete(){
         $stmt->bindParam(":Phone_Number", $this->Phone_Number);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Mobile_Number", $this->Mobile_Number);
-        $stmt->bindParam(":Notes", $this->Notes);
+        //$stmt->bindParam(":Notes", $this->Notes);
         $stmt->bindParam(":Balance", $this->Balance);
         $stmt->bindParam(":Date_Added", $this->timestamp);
         $stmt->bindParam(":Added_By", $this->Added_By);
@@ -377,8 +373,18 @@ function readName(){
     return $stmt;
     }
 
-
-
+####################################
+    public function read_all(){
+ 
+        $query = "SELECT * FROM " . $this->table_name . "
+                ORDER BY
+                    Supplier_Name";
+     
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+     
+        return $stmt;
+    }
 
 }
 ?>

@@ -5,6 +5,35 @@
   </footer>
   </div> <!-- End of page container -->
 </div> <!-- End page content -->
+
+
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Sales', <?php echo $total_s; ?>],
+  ['Inventory', <?php echo $total_p; ?>],
+  ['Customers', <?php echo $total_c; ?>],
+  ['Suppliers', <?php echo $total_su; ?>],
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Summary', 'width':550, 'height':550};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+
+
+
 <script>
 
 // Get the Sidebar
@@ -91,7 +120,18 @@ $(document).on('click', '.delete-object', function(){
             } 
 
             if(result==true){
-                $.post('delete_stock_cat.php', {
+                $.post('delete_brand.php', {
+                    object_id: id
+                }, function(data){
+                    location.reload();
+                }).fail(function() {
+                    alert('Unable to delete.');
+                });
+            } 
+
+
+            if(result==true){
+                $.post('delete_purchase.php', {
                     object_id: id
                 }, function(data){
                     location.reload();
@@ -101,7 +141,18 @@ $(document).on('click', '.delete-object', function(){
             }
 
             if(result==true){
-                $.post('delete_purchase.php', {
+                $.post('delete_tax.php', {
+                    object_id: id
+                }, function(data){
+                    location.reload();
+                }).fail(function() {
+                    alert('Unable to delete.');
+                });
+            }
+
+
+            if(result==true){
+                $.post('delete_product.php', {
                     object_id: id
                 }, function(data){
                     location.reload();
@@ -120,6 +171,45 @@ $(document).on('click', '.delete-object', function(){
 
 
 
+</script>
+
+<!-- Time Scripts -->
+<script type="text/javascript" src="time/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="time/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="time/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="time/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
 </script>
 
 </body>

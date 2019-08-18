@@ -1,17 +1,17 @@
 <?php 
 // Set header title
-$header_title = "Stock Category";
+$header_title = "Brand";
 // Set page title
-$page_title = "Add Stock Category";
+$page_title = "Add Brand";
 // include database and object files
 include_once 'config/database.php';
-include_once 'objects/stock_categories.php';
+include_once 'objects/brands.php';
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
  
 // pass connection to object
-$stock_cat = new Stock_Cat($db);
+$brand = new Brand($db);
 
 include_once'header.php';
 include_once 'nav/side_nav.php';
@@ -20,13 +20,14 @@ include_once 'nav/side_nav.php';
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
  
   // set product property values
-	$stock_cat->Category_Name = $_POST['Category_Name'];
+	$brand->Brand_UID = "BUID" . rand();
+  $brand->Brand_N = $_POST['Brand_N'];
 
 
     print_r($_POST);
 	
  // create the product
-  if($stock_cat->create()){
+  if($brand->create()){
 
     echo 
       "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
@@ -60,9 +61,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)){
 
 
     <div class="form-group">
-    <label class="col-sm-4 control-label">Category Name</label>
+    <label class="col-sm-4 control-label">Brand Name</label>
     <div class="col-sm-8">
-    <input class="form-control" id="focusedInput" type="text" name="Category_Name" required="required">
+    <input class="form-control" id="focusedInput" type="text" name="Brand_N" required="required">
     </div>
     </div>
 

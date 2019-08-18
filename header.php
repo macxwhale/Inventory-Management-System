@@ -19,6 +19,13 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+
+
+
 
 <!-- bootbox code -->
 <script src="bootbox/bootbox.min.js"></script>
@@ -38,6 +45,10 @@
 
 </script>
 
+<!-- time picker-->
+<link href="time/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="time/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
 
 <style> html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}</style>
 
@@ -52,4 +63,5 @@
 }
 </style>  
 
-<body class="w3-light-white">
+<body class="w3-light-white"> -->
+

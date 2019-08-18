@@ -70,16 +70,6 @@ echo
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Notes</th>
-    <td>{$supplier->Notes}</td>
-  </tr>
-
-  <tr>
-    <th class=\"w3-right-align\">Balance</th>
-    <td>{$supplier->Balance}</td>
-  </tr>
-
-  <tr>
     <th class=\"w3-right-align\">Date Added</th>
     <td>{$supplier->Date_Added}</td>
   </tr>
@@ -100,8 +90,7 @@ echo
   </tr>
 
 </table><br>
-<button class=\"w3-button w3-dark-grey\">More Countries  
-<i class=\"fa fa-arrow-right\"></i></button>";
+<a href=\"/pos/read_suppliers.php\"><button type=\"button\" class=\"btn btn-danger\">Back</button></a><hr>";
    
 
 ?>

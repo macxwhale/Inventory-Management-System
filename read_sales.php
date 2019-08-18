@@ -40,12 +40,14 @@ include_once 'nav/side_nav.php';
   if ($num>0) {
   echo 
     "<tr>
-      <th>Sale Number</th>
+      <th>Sale #</th>
       <th>Sales Date</th>
-      <th>Customer ID</th>
-      <th>Total Amount</th>
-      <th>Final Total Amount</th>
-      <th>Total Payment</th>
+      <th>Customer Name</th>
+      <th>Product Name</th>
+      <th>Payment Type</th>
+      <th>Amount</th>
+      <th>Payment</th>
+      <th>Balance</th>
       
       <th> Action</th>
     </tr>";
@@ -57,9 +59,11 @@ include_once 'nav/side_nav.php';
     "<tr>
       <td> {$Sales_Number} </td>
       <td> {$Sales_Date} </td>
-      <td> {$Customer_ID} </td>
+      <td> {$Customer_Name} </td>
+      <td> {$Product_N}</td>
+      <td> {$Payment_Type}</td>
       <td> {$Total_Amount} </td>
-      <td> {$Final_Total_Amount} </td>
+      <td> {$Total_Amount} </td>
       <td> {$Total_Payment} </td>
     
       <td>
@@ -93,7 +97,7 @@ include_once 'paging.php';
   echo 
       "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
       <h3>Alert!</h3>
-      <p>No Customers Found!!!</p>
+      <p>No Sales Records Found!!!</p>
       </div>";
 }
 

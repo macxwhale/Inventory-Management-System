@@ -50,11 +50,6 @@ echo
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Notes </th>
-    <td>{$purchase->Notes}</td>
-  </tr>
-
-  <tr>
     <th class=\"w3-right-align\">Total Amount </th>
     <td>{$purchase->Total_Amount}</td>
   </tr>

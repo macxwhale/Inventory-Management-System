@@ -4,6 +4,29 @@ $page_title = "Dashboard";
 include("header.php");
 include("nav/side_nav.php");
 
+include_once 'config/database.php';
+include_once 'objects/products.php';
+include_once 'objects/suppliers.php';
+include_once 'objects/customers.php';
+include_once 'objects/sales.php';
+
+
+// get database connection
+$database = new Database();
+$db = $database->getConnection();
+ 
+// pass connection to object
+$p = new Product($db);
+$su = new Supplier($db);
+$c = new Customer($db);
+$s = new Sale($db);
+
+$total_p = $p->count_all();
+$total_su = $su->countAll();
+$total_c = $c->countAll();
+$total_s = $s->countAll();
+
+
 
 ?>
 
@@ -12,57 +35,69 @@ include("nav/side_nav.php");
       <div class="w3-container w3-red w3-padding-16 w3-card-4 w3-round">
         <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>52</h3>
+          <h3><?php echo $total_p; ?></h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Messages</h4>
+        <h4>Inventory</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-blue w3-padding-16 w3-card-4 w3-round">
         <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>99</h3>
+          <h3><?php echo $total_su; ?></h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Views</h4>
+        <h4>Suppliers</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-teal w3-padding-16 w3-card-4 w3-round">
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>23</h3>
+          <h3><?php echo $total_c; ?></h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Shares</h4>
+        <h4>Customers</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-orange w3-text-white w3-padding-16 w3-card-4 w3-round">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>50</h3>
+          <h3><?php echo $total_s; ?></h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Users</h4>
+        <h4>Sales</h4>
       </div>
     </div>
   </div>
   
   <hr>
-
-  <canvas id="barChart"></canvas>
-  <!-- Stock -->
-  <div class="w3-container">
-    <h5>Inventory</h5>
-   
-   <canvas id="barChart"></canvas>
-    
-  </div>
-
+  <!--################################################# -->
+  
+    <div id="piechart"></div>
+  
+<!-- ################################################## -->
   <hr>
+  <!-- ################################################## -->
+<div class="w3-container">
+<br>
+<div class="w3-light-grey">
+  <div class="w3-container w3-green w3-center" style="width:25%">Stock Level 25%</div>
+</div><br>
 
+<div class="w3-light-grey">
+  <div class="w3-container w3-red w3-center" style="width:50%">Goods Returned 50%</div>
+</div><br>
+
+<div class="w3-light-grey">
+  <div class="w3-container w3-blue" style="width:75%">75%</div>
+</div><br>
+
+</div>
+
+<!-- ################################################## -->
 
   <!-- Stock -->
   <div class="w3-container">

@@ -39,9 +39,7 @@ include_once 'nav/side_nav.php';
 	$supplier->Phone_Number = $_POST['Phone_Number'];
 	$supplier->Email = $_POST['Email'];
 	$supplier->Mobile_Number = $_POST['Mobile_Number'];
-	$supplier->Notes = $_POST['Notes'];
 
-  print_r($_POST);
  
 	if($supplier->update()){
       echo 
@@ -139,18 +137,13 @@ value="<?php echo $supplier->Country;?>" required="required">
 </div>
 </div>
 
-<div class="form-group">
-<label class="col-sm-4 control-label">Notes</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Notes" value="<?php echo $supplier->Notes;?>"  required="required">
-</div>
-</div>
+
 
 <div class="form-group">
 <label class="col-sm-4 control-label"></label>
 <div class="col-sm-4">
 <button type="submit" class="btn btn-primary" name="submit">Edit</button>
-<button type="button" class="btn btn-danger">Cancel</button>
+ <a href="/pos/read_suppliers.php"><button type="button" class="btn btn-danger">Cancel</button></a>
 </div>
 </div>	
 

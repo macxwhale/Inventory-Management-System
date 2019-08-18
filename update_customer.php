@@ -31,7 +31,7 @@ include_once 'nav/side_nav.php';
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
  
   // set product property values
-	//$customer->Customer_Name = $_POST['Customer_Name'];
+	$customer->Customer_Name = $_POST['Customer_Name'];
 	$customer->Address = $_POST['Address'];
 	$customer->City = $_POST['City'];
 	$customer->Country = $_POST['Country'];
@@ -40,10 +40,7 @@ include_once 'nav/side_nav.php';
 	$customer->Phone_Number = $_POST['Phone_Number'];
 	$customer->Email = $_POST['Email'];
 	$customer->Mobile_Number = $_POST['Mobile_Number'];
-	$customer->Notes = $_POST['Notes'];
 
-  print_r($_POST);
- 
 	if($customer->update()){
       echo 
       "<div class=\"w3-panel w3-pale-green w3-border w3-card-4\">
@@ -79,9 +76,8 @@ value="<?php echo $customer->Customer_Number;?>" disabled>
 <div class="form-group">
 <label class="col-sm-4 control-label">Customer Name</label>
 <div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="" 
-value="<?php echo $customer->Customer_Name;?>" 
-disabled>
+<input class="form-control" id="focusedInput" type="text" name="Customer_Name" 
+value="<?php echo $customer->Customer_Name;?>">
 </div>
 </div>
 
@@ -156,18 +152,12 @@ value="<?php echo $customer->Country;?>" required="required">
 </div>
 </div>
 
-<div class="form-group">
-<label class="col-sm-4 control-label">Notes</label>
-<div class="col-sm-8">
-<input class="form-control" id="focusedInput" type="text" name="Notes" value="<?php echo $customer->Notes;?>"  required="required">
-</div>
-</div>
 
 <div class="form-group">
 <label class="col-sm-4 control-label"></label>
 <div class="col-sm-4">
 <button type="submit" class="btn btn-primary" name="submit">Edit</button>
-<button type="button" class="btn btn-danger">Cancel</button>
+<a href="/pos/read_customers.php"><button type="button" class="btn btn-danger">Cancel</button></a>
 </div>
 </div>	
 
