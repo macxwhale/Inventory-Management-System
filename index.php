@@ -1,8 +1,11 @@
 <?php 
-$head_title = "Home";
 $page_title = "Dashboard";
+$header_title = "Home";
 include("header.php");
 include("nav/side_nav.php");
+
+
+
 
 include_once 'config/database.php';
 include_once 'objects/products.php';

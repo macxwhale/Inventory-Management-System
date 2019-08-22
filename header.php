@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title><?php echo $header_title?></title>
+<title><?php echo $header_title; ?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--W3 SchoolsCSS -->
