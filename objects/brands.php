@@ -3,7 +3,7 @@ class Brand{
  
     // database connection and table name
     private $conn;
-    private $table_name = "Brands";
+    private $table_name = "brands";
  
     // object properties
     public $Brand_ID;

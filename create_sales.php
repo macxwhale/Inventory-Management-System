@@ -64,7 +64,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) &&!empty($_POST["Sale
   } else {
 
 
-
+//Tax
+//Amount
 
     //$product->update();
  
@@ -73,25 +74,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) &&!empty($_POST["Sale
     $sale->Sales_Date= $_POST['Sales_Date'];
     $sale->Quantity = $_POST['Quantity'];
     $sale->Customer_ID = $_POST['Customer_ID'];
-    $sale->Payment_Type = $_POST['Payment_Type'];
     $sale->Product_ID = $_POST['Product_ID'];
     $sale->Tax_ID = $_POST['Tax_ID'];
-    $sale->Total_Payment = $_POST['Total_Payment'];
 
-    $tax = ($product->Selling_Price * $tax->Tax_Percentage / 100);
-
-    $sale->Total_Amount = ($sale->Quantity * $product->Selling_Price) + $tax;
-    $sale->Total_Balance = $sale->Total_Amount - $sale->Total_Payment;
-
-    $sale->Profit = $sale->Quantity * ($product->Buying_Price - $sale->Total_Amount);
-    
-    
     $product->Quantity = $product->Quantity - $sale->Quantity;
     if($product->Quantity == 0) {
       $product->In_Stock = 'N';
     } else {
        $product->In_Stock = 'Y';
     }
+
+    $sale->Tax = $sale->Quantity * ($product->Selling_Price * $tax->Tax_Percentage / 100);
+
+    $sale->Amount = $sale->Quantity * $product->Selling_Price;
+
+    $sale->Total_Amount = $sale->Tax + $sale->Amount;
+   
+    $sale->Total_Payment = $_POST['Total_Payment'];
+
+    $sale->Total_Balance = $sale->Total_Amount - $sale->Total_Payment;
+
+
+    $sale->Profit = ($sale->Total_Payment -  $sale->Tax) - ($product->Buying_Price * $sale->Quantity);
+
+    $sale->Payment_Type = $_POST['Payment_Type'];
+    
+    
+  
 
     if ($product->update_q()) {
       echo 

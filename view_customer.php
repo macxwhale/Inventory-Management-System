@@ -74,8 +74,8 @@ echo
   </tr>
 
   <tr>
-    <th class=\"w3-right-align\">Notes</th>
-    <td>{$customer->Notes}</td>
+    <th class=\"w3-right-align\">Balance</th>
+    <td>{$customer->Balance}</td>
   </tr>
 
 

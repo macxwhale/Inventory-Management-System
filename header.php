@@ -22,7 +22,10 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
+<!-- Charts-->
 
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.min.js"></script>
 
 
 

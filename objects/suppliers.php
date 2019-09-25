@@ -315,7 +315,8 @@ function delete(){
  
         // to get time-stamp for 'created' field
         $this->timestamp = date('Y-m-d H:i:s');
-        $this->Added_By = 'Administrator';
+        $this->Added_By = 'Admin';
+        $this->Updated_By = 'Admin';
  
         // bind values
         //$stmt->bindParam(":Supplier_Id", $this->Supplier_Id);
@@ -333,7 +334,7 @@ function delete(){
         $stmt->bindParam(":Date_Added", $this->timestamp);
         $stmt->bindParam(":Added_By", $this->Added_By);
         $stmt->bindParam(":Date_Updated", $this->timestamp);
-        $stmt->bindParam(":Updated_By", $this->timestamp);
+        $stmt->bindParam(":Updated_By", $this->Updated_By);
  
         if($stmt->execute()){
             return true;

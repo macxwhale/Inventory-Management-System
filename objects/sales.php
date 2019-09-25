@@ -317,11 +317,7 @@ function delete(){
 
 // create product
     function create(){
-
-     
-
-
-        try {
+      try {
 
 
         //write query
@@ -336,6 +332,8 @@ function delete(){
                     Payment_Type=:Payment_Type,
                     Tax_ID=:Tax_ID,
                     Quantity=:Quantity,
+                    Tax=:Tax,
+                    Amount=:Amount,
                     Total_Amount=:Total_Amount,
                     Total_Payment=:Total_Payment,
                     Total_Balance=:Total_Balance,
@@ -345,8 +343,10 @@ function delete(){
                     Tax_Amount=:Tax_Amount,
                     Tax_Description=:Tax_Description,
                     Final_Total_Amount=:Final_Total_Amount,
+                    Date_Added=:Date_Added,
+                    Added_By=:Added_By,
                     Date_Updated=:Date_Updated,
-                    Updated_By =:Updated_By";
+                    Updated_By=:Updated_By";
  
         $stmt = $this->conn->prepare($query);
  
@@ -359,6 +359,8 @@ function delete(){
         $this->Product_ID = htmlspecialchars(strip_tags($this->Product_ID));
         $this->Tax_ID = htmlspecialchars(strip_tags($this->Tax_ID));
         $this->Quantity = htmlspecialchars(strip_tags($this->Quantity));
+        $this->Tax = htmlspecialchars(strip_tags($this->Tax));
+        $this->Amount = htmlspecialchars(strip_tags($this->Amount));
         $this->Total_Amount = htmlspecialchars(strip_tags($this->Total_Amount));
         $this->Total_Payment = htmlspecialchars(strip_tags($this->Total_Payment));
         $this->Total_Balance = htmlspecialchars(strip_tags($this->Total_Balance));
@@ -370,15 +372,16 @@ function delete(){
         $this->Tax_Amount = htmlspecialchars(strip_tags($this->Tax_Amount));
         $this->Tax_Description = htmlspecialchars(strip_tags($this->Tax_Description));
         $this->Final_Total_Amount = htmlspecialchars(strip_tags($this->Final_Total_Amount));
-        //$this->Date_Added = htmlspecialchars(strip_tags($this->Date_Added));
-        //$this->Added_By = htmlspecialchars(strip_tags($this->Added_By));
+        $this->Date_Added = htmlspecialchars(strip_tags($this->Date_Added));
+        $this->Added_By = htmlspecialchars(strip_tags($this->Added_By));
         $this->Date_Updated = htmlspecialchars(strip_tags($this->Date_Updated));
         $this->Updated_By = htmlspecialchars(strip_tags($this->Updated_By));
         //$this->Balance = htmlspecialchars(strip_tags($this->Balance));
  
         // to get time-stamp for 'created' field
         $this->timestamp = date('Y-m-d H:i:s');
-        $this->Added_By = 'Administrator';
+        $this->Added_By = 'Admin';
+        $this->Updated_By = 'Admin';
  
         // bind values
         //$stmt->bindParam(":Sales_ID" , $this->Sales_ID);
@@ -388,6 +391,8 @@ function delete(){
         $stmt->bindParam(":Product_ID" , $this->Product_ID);
         $stmt->bindParam(":Tax_ID" , $this->Tax_ID);
         $stmt->bindParam(":Quantity" , $this->Quantity);
+        $stmt->bindParam(":Tax" , $this->Tax);
+        $stmt->bindParam(":Amount" , $this->Amount);
         $stmt->bindParam(":Total_Amount" , $this->Total_Amount);
         $stmt->bindParam(":Total_Payment" , $this->Total_Payment);
         $stmt->bindParam(":Total_Balance" , $this->Total_Balance);
@@ -399,10 +404,11 @@ function delete(){
         $stmt->bindParam(":Tax_Amount" , $this->Tax_Amount);
         $stmt->bindParam(":Tax_Description" , $this->Tax_Description);
         $stmt->bindParam(":Final_Total_Amount" , $this->Final_Total_Amount);
-        //$stmt->bindParam(":Date_Added" , $this->Date_Added);
-        //$stmt->bindParam(":Added_By" , $this->Added_By);
+        $stmt->bindParam(":Date_Added" , $this->timestamp);
+        $stmt->bindParam(":Added_By" , $this->Added_By);
         $stmt->bindParam(":Date_Updated" , $this->timestamp);
         $stmt->bindParam(":Updated_By" , $this->Updated_By);
+
  
         if($stmt->execute()){
             return true;

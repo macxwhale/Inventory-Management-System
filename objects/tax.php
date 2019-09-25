@@ -3,7 +3,7 @@ class Tax {
  
     // database connection and table name
     private $conn;
-    private $table_name = "Tax";
+    private $table_name = "tax";
  
     // object properties
     public $Tax_ID;

@@ -114,7 +114,7 @@
     <label class="col-sm-4 control-label"></label>
     <div class="col-sm-4">
     <button type="submit" class="btn btn-primary" name="submit">Add</button>
-    <a href="/pos/read_sales.php"><button type="button" class="btn btn-danger">Cancel</button></a>
+    <a href="/pos/read_sales.php"><button type="button" class="btn btn-danger">Cancel</button></a><br><br>
     </div>
     </div>  
 

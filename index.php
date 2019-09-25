@@ -77,28 +77,21 @@ $total_s = $s->countAll();
   </div>
   
   <hr>
-  <!--################################################# -->
-  
+
+ <!--################################################# --> 
+<div class="w3-row">
+  <div class="w3-col m3 l6">
+    <canvas id="myChart" style="max-width: 500px;"></canvas>
+  </div>
+  <div class="w3-col m3 l6">
     <div id="piechart"></div>
-  
+  </div>
+</div>
+
 <!-- ################################################## -->
   <hr>
   <!-- ################################################## -->
-<div class="w3-container">
-<br>
-<div class="w3-light-grey">
-  <div class="w3-container w3-green w3-center" style="width:25%">Stock Level 25%</div>
-</div><br>
 
-<div class="w3-light-grey">
-  <div class="w3-container w3-red w3-center" style="width:50%">Goods Returned 50%</div>
-</div><br>
-
-<div class="w3-light-grey">
-  <div class="w3-container w3-blue" style="width:75%">75%</div>
-</div><br>
-
-</div>
 
 <!-- ################################################## -->
 

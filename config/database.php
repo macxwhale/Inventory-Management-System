@@ -3,9 +3,9 @@ class Database{
   
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "inv_sales";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "chacalim_inv_sales";
+    private $username = "chacalim_inv";
+    private $password = "4eT;v0qN%rvC";
     public $conn;
   
     // get the database connection
